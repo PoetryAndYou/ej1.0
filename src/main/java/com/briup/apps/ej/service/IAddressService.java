@@ -9,5 +9,6 @@ import java.util.List;
  * @create 2019-06-10 13:36
  */
 public interface IAddressService {
-    List<Address>  selectAddress();
+
+    List<Address>  findAll();
 }
