@@ -1,4 +1,7 @@
 package com.briup.apps.ej.service.Impl;
+
+import com.briup.apps.ej.bean.Address;
+import com.briup.apps.ej.bean.AddressExample;
 import com.briup.apps.ej.dao.AddressMapper;
 import com.briup.apps.ej.dao.CustomerMapper;
 import com.briup.apps.ej.service.IAddressService;
@@ -6,6 +9,7 @@ import com.briup.apps.ej.service.ICustomerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author rui
@@ -14,6 +18,11 @@ import javax.annotation.Resource;
 @Service
 public class IAddressServiceImpl implements IAddressService {
     @Resource
-    private AddressMapper addressMapper;
+    private AddressMapper iaddressMapper;
 
+    @Override
+    public List<Address> selectAddress() {
+        AddressExample example = new AddressExample();
+        return iaddressMapper.selectByExample(example);
+    }
 }
