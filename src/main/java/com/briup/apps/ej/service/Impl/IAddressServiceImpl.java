@@ -19,6 +19,27 @@ public class IAddressServiceImpl implements IAddressService {
     private AddressMapper addressMapper;
 
     @Override
+    public List<Address> query(Address address) {
+        AddressExample example = new AddressExample();
+
+        if(address.getProvince()!=null){
+            example
+                    .createCriteria()
+                    .andProvinceLike("%"+address.getProvince()+"%");
+        }
+        if(address.getTelephone()!=null){
+            example
+                    .createCriteria()
+                    .andTelephoneLike("%"+address.getTelephone()+"%");
+        }
+        if(address.getAddress()!=null){
+            example.createCriteria().andAddressLike(address.getAddress());
+        }
+
+        return addressMapper.selectByExample(example);
+    }
+
+    @Override
     public List<Address> findAll() {
         AddressExample example = new AddressExample();
         return addressMapper.selectByExample(example);

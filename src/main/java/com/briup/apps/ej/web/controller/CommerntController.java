@@ -25,7 +25,12 @@ import java.util.List;
 public class CommerntController {
     @Autowired
     private ICommentService commentService;
-
+    @ApiOperation("模糊查询")
+    @GetMapping("query")
+    public Message query(Comment comment) {
+        List<Comment> list=commentService.query(comment);
+        return MessageUtil.success("success",list);
+    }
     @ApiOperation("查询所有评论")
     @GetMapping("findAll")
     public Message findAll(){

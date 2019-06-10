@@ -11,6 +11,7 @@ import java.util.List;
  */
 
 public interface ICategoryService {
+    List<Category> query(Category category);
     List<Category> findAll();
     Category findById(long id);
     void saveOrupdate (Category category) throws Exception;

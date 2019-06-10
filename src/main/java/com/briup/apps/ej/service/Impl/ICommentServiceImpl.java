@@ -1,13 +1,10 @@
 package com.briup.apps.ej.service.Impl;
-import com.briup.apps.ej.bean.Category;
+
 import com.briup.apps.ej.bean.Comment;
 import com.briup.apps.ej.bean.CommentExample;
 import com.briup.apps.ej.dao.CommentMapper;
-import com.briup.apps.ej.dao.CustomerMapper;
 import com.briup.apps.ej.service.ICommentService;
-import com.briup.apps.ej.service.ICustomerService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -19,6 +16,27 @@ import java.util.List;
 public class ICommentServiceImpl implements ICommentService {
     @Resource
     private CommentMapper commentMapper;
+
+    @Override
+    public List<Comment> query(Comment comment) {
+        CommentExample example = new CommentExample();
+
+        if(comment.getContent()!=null){
+            example
+                    .createCriteria()
+                    .andContentLike("%"+comment.getContent()+"%");
+        }
+        if(comment.getCommentTime()!=null){
+            example
+                    .createCriteria()
+                    .andCommentTimeEqualTo(comment.getCommentTime());
+        }
+        if(comment.getOrderId()!=null){
+            example.createCriteria().andOrderIdEqualTo(comment.getOrderId());
+        }
+
+        return commentMapper.selectByExample(example);
+    }
 
     @Override
     public List<Comment> findAll() {

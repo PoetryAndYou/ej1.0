@@ -23,6 +23,13 @@ import java.util.List;
 public class AddressController {
     @Autowired
     private IAddressService addressService;
+
+    @ApiOperation("模糊查询")
+    @GetMapping("query")
+    public Message query(Address address) {
+        List<Address> list=addressService.query(address);
+        return MessageUtil.success("success",list);
+    }
     @ApiOperation("查询所有地址")
     @GetMapping("findAll")
     public Message findAll(){

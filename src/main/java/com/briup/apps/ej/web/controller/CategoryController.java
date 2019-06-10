@@ -1,6 +1,5 @@
 package com.briup.apps.ej.web.controller;
 
-import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Category;
 import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.service.ICategoryService;
@@ -26,6 +25,12 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private ICategoryService categoryService;
+    @ApiOperation("模糊查询")
+    @GetMapping("query")
+    public Message query(Category category) {
+        List<Category> list=categoryService.query(category);
+        return MessageUtil.success("success",list);
+    }
     @ApiOperation("查询所有类别")
     @GetMapping("findAll")
     public Message findAll(){
