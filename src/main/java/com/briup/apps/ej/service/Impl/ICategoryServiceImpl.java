@@ -2,8 +2,10 @@ package com.briup.apps.ej.service.Impl;
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Category;
 import com.briup.apps.ej.bean.CategoryExample;
+import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.dao.CategoryMapper;
 import com.briup.apps.ej.dao.CustomerMapper;
+import com.briup.apps.ej.dao.extend.CategoryExtendMapper;
 import com.briup.apps.ej.service.ICategoryService;
 import com.briup.apps.ej.service.ICustomerService;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,8 @@ import java.util.List;
 public class ICategoryServiceImpl implements ICategoryService {
     @Resource
     private CategoryMapper categoryMapper;
-
+   @Resource
+    private CategoryExtendMapper categoryExtendMapper;
     @Override
     public List<Category> findAll() {
         CategoryExample example =new CategoryExample();
@@ -49,5 +52,10 @@ public class ICategoryServiceImpl implements ICategoryService {
         } else {
             categoryMapper.deleteByPrimaryKey(id);
         }
+    }
+
+    @Override
+    public List<CategoryExtend> findAllP(Long id) {
+        return categoryExtendMapper.findAllP(id);
     }
 }

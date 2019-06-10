@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.ej.dao.extend.CategoryExtendMapper" >
+    <select  resultMap="BaseResultMap" id="findAllP" >
+    select
+      p.id as p_id,
+      p.name,
+      p.description,
+      p.price,
+      p.status,
+      p.photo
+      from
+    ej_category c left join  ej_product p
+   on
+     p.category_id=c.id and c.id=#{id}
+</select>
+    <resultMap id="BaseResultMap" type="com.briup.apps.ej.bean.extend.CategoryExtend" >
+        <association property="product" javaType="com.briup.apps.ej.bean.Product" >
+        <id column="p_id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="price" property="price"/>
+        <result column="status" property="status"/>
+        <result column="photo" property="photo"/>
+        </association>
+    </resultMap>
+</mapper>

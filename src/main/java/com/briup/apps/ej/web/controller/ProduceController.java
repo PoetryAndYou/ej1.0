@@ -1,6 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.service.IProductService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -18,16 +19,20 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/ProduceController")
-
 public class ProduceController {
     @Autowired
     private IProductService productService;
 
-    @GetMapping
+    @GetMapping("/findALLPro")
     @ApiOperation("查询所有产品")
     public Message findALLPro() {
         List<Product> list = productService.findALLPro();
         return MessageUtil.
                 success("sucess", list);
     }
+
+
+
+
+
 }

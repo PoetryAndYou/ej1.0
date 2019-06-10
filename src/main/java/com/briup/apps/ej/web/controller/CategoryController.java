@@ -2,6 +2,7 @@ package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Category;
+import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.service.ICategoryService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -59,5 +60,12 @@ public class CategoryController {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
+    }
+    @ApiOperation("通过id查询商品")
+    @GetMapping("findAllP")
+    public Message findAllP(Long id) {
+        List<CategoryExtend> list=categoryService.findAllP(id);
+        return MessageUtil.success("sucess",list);
+
     }
 }

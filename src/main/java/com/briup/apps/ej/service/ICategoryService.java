@@ -1,6 +1,7 @@
 package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Category;
+import com.briup.apps.ej.bean.extend.CategoryExtend;
 
 import java.util.List;
 
@@ -14,4 +15,5 @@ public interface ICategoryService {
     Category findById(long id);
     void saveOrupdate (Category category) throws Exception;
     void deleteById(long id) throws Exception;
+    List<CategoryExtend>  findAllP(Long id);
 }

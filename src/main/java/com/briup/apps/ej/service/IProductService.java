@@ -1,6 +1,7 @@
 package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.bean.extend.CategoryExtend;
 
 import java.util.List;
 
