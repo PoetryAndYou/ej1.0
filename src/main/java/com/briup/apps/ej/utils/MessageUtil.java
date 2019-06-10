@@ -23,7 +23,7 @@ public class MessageUtil {
         return message;
     }
 
-    public static Message message(String msg, Object data) {
+    public static Message success(String msg, Object data) {
         Message message = new Message();
         message.setStatus(200);
         message.setMessage(msg);

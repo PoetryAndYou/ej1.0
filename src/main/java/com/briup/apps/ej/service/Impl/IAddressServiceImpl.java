@@ -18,11 +18,11 @@ import java.util.List;
 @Service
 public class IAddressServiceImpl implements IAddressService {
     @Resource
-    private AddressMapper iaddressMapper;
+    private AddressMapper addressMapper;
 
     @Override
-    public List<Address> selectAddress() {
+    public List<Address> findAll() {
         AddressExample example = new AddressExample();
-        return iaddressMapper.selectByExample(example);
+        return addressMapper.selectByExample(example);
     }
 }
