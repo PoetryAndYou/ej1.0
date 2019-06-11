@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface IProductService {
     List<Product> findALLPro();
+    public void creOrdLin(Integer num,Long id);
  }

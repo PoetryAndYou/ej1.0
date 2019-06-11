@@ -9,7 +9,7 @@
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://129.211.74.129:3306/ej1.0 "
-                        userId="stu03"
+                        userId="stu01"
                         password="admin">
             <!--产生selectByPrimaryKey-->
             <property name="useInformationSchema" value="true"/>
