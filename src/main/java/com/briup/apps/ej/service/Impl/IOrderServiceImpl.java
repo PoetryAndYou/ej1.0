@@ -43,5 +43,15 @@ public class IOrderServiceImpl implements IOrderService {
         return orderExtendMapper.findAllAddress(id);
     }
 
+    @Override
+    public List<OrderExtend> findAllCustomer(Long id) {
+        return orderExtendMapper.findAllCustomer(id);
+    }
+
+    @Override
+    public List<OrderExtend> findAllWaiter(Long id) {
+        return orderExtendMapper.findAllWaiter(id);
+    }
+
 
 }

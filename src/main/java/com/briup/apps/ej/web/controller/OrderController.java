@@ -42,4 +42,16 @@ public class OrderController {
         List<OrderExtend> list = orderService.findAllAddress(id);
         return MessageUtil.success("success",list);
     }
+    @ApiOperation("通过订单查询该订单的用户信息")
+    @GetMapping("findAllCustomer")
+    public Message findAllCustomer(Long id){
+        List<OrderExtend> list = orderService.findAllCustomer(id);
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("通过订单查询员工信息")
+    @GetMapping("findAllWaiter")
+    public Message findAllWaiter(Long id){
+        List<OrderExtend> list = orderService.findAllWaiter(id);
+        return MessageUtil.success("success",list);
+    }
 }
