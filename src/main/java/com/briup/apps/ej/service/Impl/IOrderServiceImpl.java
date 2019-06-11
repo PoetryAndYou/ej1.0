@@ -53,5 +53,8 @@ public class IOrderServiceImpl implements IOrderService {
         return orderExtendMapper.findAllWaiter(id);
     }
 
-
+    @Override
+    public int creNewOrd(Order order) {
+        return orderMapper.insert(order);
+    }
 }

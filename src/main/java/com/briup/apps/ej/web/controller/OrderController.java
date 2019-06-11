@@ -54,4 +54,10 @@ public class OrderController {
         List<OrderExtend> list = orderService.findAllWaiter(id);
         return MessageUtil.success("success",list);
     }
+    @ApiOperation("创建新订单")
+    @GetMapping("creNewOrd")
+    public Message  creNewOrd(Order order){
+        int a=orderService.creNewOrd(order);
+        return MessageUtil.message("创建成功");
+    }
 }

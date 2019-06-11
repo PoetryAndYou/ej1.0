@@ -21,5 +21,5 @@ public interface IOrderService {
     List<OrderExtend> findAllWaiter(Long id);
 
     //创建新订单
-    Order creNewOrd(Order order);
+    int creNewOrd(Order order);
 }
