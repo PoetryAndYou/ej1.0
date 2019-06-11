@@ -38,5 +38,10 @@ public class IOrderServiceImpl implements IOrderService {
         return orderExtendMapper.findAllComment(id);
     }
 
+    @Override
+    public List<OrderExtend> findAllAddress(Long id) {
+        return orderExtendMapper.findAllAddress(id);
+    }
+
 
 }

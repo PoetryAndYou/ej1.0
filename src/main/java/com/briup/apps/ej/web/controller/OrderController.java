@@ -30,10 +30,16 @@ public class OrderController {
         List<Order> list = orderService.findAll();
         return MessageUtil.success("sucess", list);
     }
-    @ApiOperation("查询订单的所有评价信息")
+    @ApiOperation("通过订单查询用户该订单的所有评价信息")
     @GetMapping("findAllComment")
     public Message findAllComment(Long id){
         List<OrderExtend> list = orderService.findAllComment(id);
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("通过订单查询该用户的所有地址信息")
+    @GetMapping("findAllAddress")
+    public Message findAllAddress(Long id){
+        List<OrderExtend> list = orderService.findAllAddress(id);
         return MessageUtil.success("success",list);
     }
 }
