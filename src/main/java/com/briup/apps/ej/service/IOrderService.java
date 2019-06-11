@@ -1,6 +1,7 @@
 package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.extend.OrderExtend;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ import java.util.List;
  */
 public interface IOrderService {
     List<Order> findAll();//查询所有订单
-
+    List<OrderExtend> findAllComment(Long id);
 }

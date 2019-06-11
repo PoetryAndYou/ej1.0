@@ -2,7 +2,9 @@ package com.briup.apps.ej.service.Impl;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
+import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.dao.OrderMapper;
+import com.briup.apps.ej.dao.extend.OrderExtendMapper;
 import com.briup.apps.ej.service.IOrderService;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import java.util.List;
 public class IOrderServiceImpl implements IOrderService {
     @Resource
     private OrderMapper orderMapper;
+    @Resource
+    private OrderExtendMapper orderExtendMapper;
 
     /**
      * 查询所有订单
@@ -28,4 +32,11 @@ public class IOrderServiceImpl implements IOrderService {
         OrderExample example = new OrderExample();
         return orderMapper.selectByExample(example);
     }
+
+    @Override
+    public List<OrderExtend> findAllComment(Long id) {
+        return orderExtendMapper.findAllComment(id);
+    }
+
+
 }
