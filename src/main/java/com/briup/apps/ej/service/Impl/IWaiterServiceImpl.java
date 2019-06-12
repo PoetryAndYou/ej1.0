@@ -62,7 +62,7 @@ public class IWaiterServiceImpl implements IWaiterService {
             waiterMapper.deleteByPrimaryKey(id);
         }
     }
-///插入新员工
+////插入新员工
 //    @Override
 //    public void insert(Waiter waiter) {
 //
