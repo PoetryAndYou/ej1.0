@@ -63,4 +63,10 @@ public class IWaiterServiceImpl implements IWaiterService {
         }
     }
 
+    @Override
+    public void batchDelete(Long[] ids) throws Exception {
+        for(long id :ids){
+            waiterMapper.deleteByPrimaryKey(id);
+        }
+    }
 }

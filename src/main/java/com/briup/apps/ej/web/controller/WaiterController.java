@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.nio.file.WatchService;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class WaiterController {
         return MessageUtil.success("success", list);
     }
 
-    @ApiOperation("查询所有服务员")
+    @ApiOperation("查询所有员工")
     @GetMapping("findAll")
     public Message findAll() {
         List<Waiter> waiter = waiterService.findAll();
@@ -47,19 +48,19 @@ public class WaiterController {
         return MessageUtil.success("success", waiter);
     }
 
-    @ApiOperation("保存或更新用户信息")
+    @ApiOperation("保存或更新员工信息")
     @PostMapping ("saveOrupdate")
     public Message savaOrupdate(Waiter waiter) {
         try {
             waiterService.saveOrupdate(waiter);
-            return MessageUtil.message("success");
+            return MessageUtil.message("更新成功");
         } catch (Exception e) {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
     }
 
-    @ApiOperation("通过id删除用户信息")
+    @ApiOperation("通过id删除员工信息")
     @GetMapping("deleteById")
     public Message deleteById(@ApiParam(value = "主键", required = true)
                               @RequestParam("id") long id) {
@@ -71,5 +72,13 @@ public class WaiterController {
             return MessageUtil.error(e.getMessage());
         }
     }
-
+    @ApiOperation("批量删除员工信息")
+    @PostMapping("batchDelete")
+    public Message batchDelete(@NotNull(message = "id不能为空") Long[] ids) throws Exception {
+        for (Long id: ids
+        ) {
+            waiterService.batchDelete(ids);
+        }
+        return MessageUtil.message("成功");
+    }
 }
