@@ -7,6 +7,7 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/address")
+@Validated
 public class AddressController {
     @Autowired
     private IAddressService addressService;
@@ -66,7 +68,7 @@ public class AddressController {
 
     @ApiOperation("批量删除地址信息")
     @PostMapping("batchDelete")
-    public Message batchDelete(@NotNull(message = "ids不能为空") long[] ids) throws Exception{
+    public Message batchDelete(@NotNull(message = "ids不能为空") Long[] ids) throws Exception{
         addressService.batchDelete(ids);
         return MessageUtil.message("批量删除成功");
     }

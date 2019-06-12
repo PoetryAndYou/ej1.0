@@ -14,5 +14,5 @@ public interface IAddressService {
     Address findById(long id);
     void saveOrupdate (Address address) throws Exception;
     void deleteById(long id) throws Exception;
-    void batchDelete(long[] ids) throws Exception;
+    void batchDelete(Long[] ids) throws Exception;
 }
