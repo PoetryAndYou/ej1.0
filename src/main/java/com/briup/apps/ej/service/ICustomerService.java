@@ -22,4 +22,7 @@ public interface ICustomerService {
     List <Customer> query(Customer customer);
 
     List<Customer> findAllcustomer();
+     void batchDelete(Long ids[])throws  Exception;
+
+
 }
