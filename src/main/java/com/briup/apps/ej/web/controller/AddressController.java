@@ -7,11 +7,10 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -20,6 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/address")
+@Validated
 public class AddressController {
     @Autowired
     private IAddressService addressService;
@@ -43,7 +43,7 @@ public class AddressController {
         return MessageUtil.success("success",address);
     }
     @ApiOperation("保存或更新地址信息")
-    @GetMapping("saveOrupdate")
+    @PostMapping ("saveOrupdate")
     public Message saveOrupdate(Address address) {
         try {
             addressService.saveOrupdate(address);
@@ -65,5 +65,13 @@ public class AddressController {
             return MessageUtil.error(e.getMessage());
         }
     }
+
+    @ApiOperation("批量删除地址信息")
+    @PostMapping("batchDelete")
+    public Message batchDelete(@NotNull(message = "ids不能为空") Long[] ids) throws Exception{
+        addressService.batchDelete(ids);
+        return MessageUtil.message("批量删除成功");
+    }
+
 }
 
