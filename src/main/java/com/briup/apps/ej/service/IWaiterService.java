@@ -17,4 +17,6 @@ public interface IWaiterService {
 
     void  deleteById (long id) throws Exception;
 
+
+
 }
