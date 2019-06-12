@@ -63,4 +63,10 @@ public class IOrderServiceImpl implements IOrderService {
         }
 
     }
+
+    @Override
+    public void deleteOrder(Long id) throws Exception {
+        OrderExample example=new OrderExample();
+        orderMapper.deleteByExample(example);
+    }
 }
