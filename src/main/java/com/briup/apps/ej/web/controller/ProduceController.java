@@ -30,11 +30,20 @@ public class ProduceController {
         return MessageUtil.
                 success("sucess", list);
     }
+
     @GetMapping("/creOrdLin")
     @ApiOperation("创建订单链接，产品数量，产品id")
     public Message creOrdLin(Integer num, Long id) {
         productService.creOrdLin(num, id);
         return MessageUtil.message("创建成功");
+    }
+
+    @GetMapping("/saveOrUpdate")
+    @ApiOperation("更新删除product")
+    public Message saveOrUpdate(Product product) throws Exception {
+
+        productService.saveOrUpdate(product);
+        return MessageUtil.message("成功");
     }
 
 
