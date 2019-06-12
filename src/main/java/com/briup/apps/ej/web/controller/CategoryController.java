@@ -44,26 +44,16 @@ public class CategoryController {
     }
     @ApiOperation("保存或更新类别信息")
     @PostMapping("saveOrupdate")
-    public Message saveOrupdate(Category category) {
-        try {
+    public Message saveOrupdate(Category category) throws Exception{
             categoryService.saveOrupdate(category);
             return MessageUtil.message("更新成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
     }
     @ApiOperation("通过id删除类别信息")
     @GetMapping("deleteById")
     public Message deleteById(
-            @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) {
-        try {
+           @NotNull @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) throws Exception {
             categoryService.deleteById(id);
             return MessageUtil.message("删除成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
     }
     @ApiOperation("通过id查询商品")
     @GetMapping("findAllP")

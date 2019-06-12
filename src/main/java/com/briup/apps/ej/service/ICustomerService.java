@@ -14,9 +14,7 @@ public interface ICustomerService {
     List<Customer>  findAll();
     Customer findById(long id);
     void saveOrupdate (Customer customer) throws Exception;
-
     void deleteById(long id) throws Exception;
-
     void batchDelete(Long ids[])throws  Exception;
 
 
