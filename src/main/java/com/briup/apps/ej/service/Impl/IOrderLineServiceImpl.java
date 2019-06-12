@@ -22,4 +22,24 @@ public class IOrderLineServiceImpl implements IOrderLineService {
         OrderLineExample example=new OrderLineExample();
         return orderLineMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public void saveOrUpdate(OrderLine orderLine) throws Exception {
+
+        if(orderLine.getId()==null){
+            orderLineMapper.insert(orderLine);
+        }else{
+           orderLineMapper.updateByPrimaryKey(orderLine);
+        }
+    }
+
+    @Override
+    public void delete(Long id) throws Exception {
+        OrderLine orderLine=findOrder(id);
+        if(orderLine==null){
+            throw new Exception("该orderline不存在");
+        }else{
+            orderLineMapper.deleteByPrimaryKey(id);
+        }
+    }
 }

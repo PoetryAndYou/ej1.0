@@ -1,6 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.OrderLine;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 import com.briup.apps.ej.utils.Message;
@@ -78,4 +79,5 @@ public class OrderController {
         Order order = orderService.findById(id);
         return MessageUtil.success("sucess", order);
     }
+
 }

@@ -21,10 +21,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderLineController {
     @Autowired
     private IOrderLineService orderLineService;
+
     @GetMapping("/findOrder")
     @ApiOperation("根据id查询订单链接")
     public Message findOrder(Long id) {
-        OrderLine ord= orderLineService.findOrder(id);
-        return MessageUtil.success("success",ord);
+        OrderLine ord = orderLineService.findOrder(id);
+        return MessageUtil.success("success", ord);
+    }
+
+    @GetMapping("/saveOrUpdate")
+    @ApiOperation("更新或插入")
+    public Message saveOrUpdate(OrderLine orderLine) throws Exception {
+        orderLineService.saveOrUpdate(orderLine);
+        return MessageUtil.message("更新或插入成功");
+    }
+
+    @GetMapping("/delete")
+    @ApiOperation("删除orderline")
+    public Message delete(Long id) throws Exception {
+        orderLineService.delete(id);
+        return MessageUtil.message("删除成功");
     }
 }
