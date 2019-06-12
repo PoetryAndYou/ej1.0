@@ -44,7 +44,15 @@ public class ICustomerServiceImpl  implements ICustomerService {
         return CustomerMapper.selectByExample(new CustomerExample());
     }
 
-    //模糊查询顾客信息
+    @Override
+    public void batchDelete(Long[] ids) throws Exception {
+        for (Long id: ids
+             ) {
+            deleteByPrimaryKey(id);
+        }
+    }
+
+    //模糊查询顾客信息，模糊查询通过真实姓名，电话号
     @Override
     public List<Customer> query(Customer customer) {
         CustomerExample customerExample = new CustomerExample();
