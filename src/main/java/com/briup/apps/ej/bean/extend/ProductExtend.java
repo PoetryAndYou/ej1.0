@@ -1,5 +1,6 @@
 package com.briup.apps.ej.bean.extend;
 
+import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderLine;
 import com.briup.apps.ej.bean.Product;
 
@@ -9,6 +10,15 @@ import com.briup.apps.ej.bean.Product;
  */
 public class ProductExtend extends Product {
     private OrderLine orderLine;
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public OrderLine getOrderLine() {
         return orderLine;

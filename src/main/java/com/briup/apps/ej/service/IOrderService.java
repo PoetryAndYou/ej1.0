@@ -11,8 +11,15 @@ import java.util.List;
  */
 public interface IOrderService {
     List<Order> findAll();//查询所有订单
+
     List<OrderExtend> findAllComment(Long id);
+
     List<OrderExtend> findAllAddress(Long id);
+
     List<OrderExtend> findAllCustomer(Long id);
+
     List<OrderExtend> findAllWaiter(Long id);
+
+    //创建新订单
+    int creNewOrd(Order order);
 }
