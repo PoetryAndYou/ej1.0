@@ -52,7 +52,6 @@ public class ICommentServiceImpl implements ICommentService {
     @Override
     public void saveOrupdate(Comment comment) throws Exception {
         if (comment.getId() == null) {
-
             commentMapper.insert(comment);
         } else {
             commentMapper.updateByPrimaryKey(comment);
