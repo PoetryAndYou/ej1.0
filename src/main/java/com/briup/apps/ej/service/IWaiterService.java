@@ -13,7 +13,7 @@ public interface IWaiterService {
 
     Waiter findById (long id);
 
-    void saveOrUpdate (Waiter waiter) throws Exception;
+    void saveOrupdate (Waiter waiter) throws Exception;
 
     void  deleteById (long id) throws Exception;
 

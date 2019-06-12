@@ -1,6 +1,5 @@
 package com.briup.apps.ej.web.controller;
 
-import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.service.ICustomerService;
 import com.briup.apps.ej.utils.Message;
@@ -19,7 +18,7 @@ import java.util.List;
  * @create 2019-06-10 11:51
  */
 @RestController
-@RequestMapping("customer")
+@RequestMapping("/customer")
 @Validated
 public class CustomerController {
     @Autowired
@@ -48,7 +47,7 @@ public class CustomerController {
     public Message saveOrupdate(Customer customer) {
         try {
             customerService.saveOrupdate(customer);
-            return MessageUtil.message("success");
+            return MessageUtil.message("更新成功");
         } catch (Exception e) {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
@@ -66,7 +65,7 @@ public class CustomerController {
             return MessageUtil.error(e.getMessage());
         }
     }
-    @ApiOperation("批量删除")
+    @ApiOperation("批量删除客户信息")
     @PostMapping("batchDelete")
     public Message batchDelete(@NotNull(message = "id不能为空") Long[] ids) throws Exception {
         for (Long id: ids

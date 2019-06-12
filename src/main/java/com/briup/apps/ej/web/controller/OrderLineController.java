@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2019-06-10 13:42
  */
 @RestController
-@RequestMapping("/OrderLineController")
+@RequestMapping("/orderLine")
 
 public class OrderLineController {
     @Autowired
