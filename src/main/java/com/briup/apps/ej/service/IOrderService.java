@@ -24,5 +24,7 @@ public interface IOrderService {
     void saveOrUpdate(Order order) throws Exception;
     //    删除order
     void deleteOrder(Long id)  throws Exception;
+    //查询订单
+    Order findById(Long id);
 
 }

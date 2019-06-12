@@ -46,5 +46,20 @@ public class IProductServiceImpl implements IProductService {
 
     }
 
+    @Override
+    public Product findById(Long id)  {
+        return productMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void deleteById(Long id) throws Exception {
+        Product product=productMapper.selectByPrimaryKey(id);
+        if(product==null){
+            throw new Exception("没有该订单");
+        }else{
+            productMapper.deleteByPrimaryKey(id);
+        }
+    }
+
 
 }

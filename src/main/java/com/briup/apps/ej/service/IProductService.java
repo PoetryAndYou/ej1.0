@@ -14,4 +14,8 @@ public interface IProductService {
     public void creOrdLin(Integer num,Long id);
 
     void saveOrUpdate(Product product)throws Exception;
+
+    Product findById(Long id);
+
+    void deleteById(Long id)throws Exception;
  }
