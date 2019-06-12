@@ -30,7 +30,7 @@ public class IWaiterServiceImpl implements IWaiterService {
         return waiterMapper.selectByExample(example);
     }
 
-//查询所有员工
+//查询所有的员工
     @Override
     public List<Waiter> findAll() {
         WaiterExample example = new WaiterExample();
