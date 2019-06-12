@@ -21,5 +21,5 @@ public interface IOrderService {
     List<OrderExtend> findAllWaiter(Long id);
 
     //创建新订单
-    int creNewOrd(Order order);
+    void saveOrUpdate(Order order) throws Exception;
 }

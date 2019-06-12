@@ -54,7 +54,13 @@ public class IOrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public int creNewOrd(Order order) {
-        return orderMapper.insert(order);
+    public  void saveOrUpdate(Order order) throws Exception{
+        if(order.getId()==null){
+            orderMapper.insert(order);
+        }else{
+            orderMapper.updateByPrimaryKey(order);
+
+        }
+
     }
 }
