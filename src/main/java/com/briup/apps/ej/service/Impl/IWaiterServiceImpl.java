@@ -43,7 +43,7 @@ public class IWaiterServiceImpl implements IWaiterService {
     }
 //保存或更新信息
     @Override
-    public void saveOrUpdate(Waiter waiter) throws Exception {
+    public void saveOrupdate(Waiter waiter) throws Exception {
         if (waiter.getId() == null) {
             // 初始化属性
             waiter.setStatus("正常");
@@ -62,27 +62,5 @@ public class IWaiterServiceImpl implements IWaiterService {
             waiterMapper.deleteByPrimaryKey(id);
         }
     }
-////插入新员工
-//    @Override
-//    public void insert(Waiter waiter) {
-//
-//    }
-//    //
-//    //@Override
-//    //public void insert(Waiter waiter) throws Exception {
-//    //    if (waiter.getId() == null) {
-//    //        //初始化属性
-//    //
-//    //        waiter.getStatus();
-//    //        waiterMapper.insert(waiter);
-//    //    } else {
-//    //        waiterMapper.insert(waiter);
-//    //    }
-//    //}
-//
-//
-
-
-
 
 }

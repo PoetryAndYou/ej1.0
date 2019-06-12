@@ -18,7 +18,7 @@ import java.util.List;
  * @create 2019-06-10 13:42
  */
 @RestController
-@RequestMapping("/OrderController")
+@RequestMapping("/order")
 
 public class OrderController {
     @Autowired

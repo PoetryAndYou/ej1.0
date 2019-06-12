@@ -78,4 +78,11 @@ public class ICategoryServiceImpl implements ICategoryService {
 
         return categoryExtendMapper.findAllP(id);
     }
+
+    @Override
+    public void batchDelete(Long[] ids) throws Exception {
+        for(long id :ids){
+            categoryMapper.deleteByPrimaryKey(id);
+        }
+    }
 }
