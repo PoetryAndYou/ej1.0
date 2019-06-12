@@ -1,5 +1,6 @@
 package com.briup.apps.ej.web.controller;
 
+import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.service.ICustomerService;
 import com.briup.apps.ej.utils.Message;
@@ -24,49 +25,47 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
 
-    @ApiOperation("查询所有顾客信息")
-    @GetMapping("findAllCustomer")
-    public Message findAllCustomer(){
-        List<Customer> list = customerService.findAllcustomer();
+    @ApiOperation("模糊查询")
+    @GetMapping("query")
+    public Message query(Customer customer) {
+        List<Customer> list=customerService.query(customer);
         return MessageUtil.success("success",list);
     }
-
-    @ApiOperation("通过主键查询")
-    @GetMapping("selectById")
-    public Message selectById(
-            @ApiParam(value = "主键",required = true)
-            @RequestParam(value = "id")long id){
-        Customer customer=customerService.selectByPrimaryKey(id);
+    @ApiOperation("查询所有客户")
+    @GetMapping("findAll")
+    public Message findAll(){
+        List<Customer> list=customerService.findAll();
+        return MessageUtil.success("success",list);
+    }
+    @ApiOperation("通过id查询客户")
+    @GetMapping("findById")
+    public Message findById(@ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) {
+        Customer customer=customerService.findById(id);
         return MessageUtil.success("success",customer);
     }
-    @ApiOperation("通过id删除信息")
-    @GetMapping("deleteById")
-    public Message deleteById(@ApiParam(value = "主键",required = true) @RequestParam("id") Long id){
+    @ApiOperation("保存或更新客户信息")
+    @PostMapping ("saveOrupdate")
+    public Message saveOrupdate(Customer customer) {
         try {
-            customerService.deleteByPrimaryKey(id);
+            customerService.saveOrupdate(customer);
             return MessageUtil.message("success");
         } catch (Exception e) {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
     }
-    @ApiOperation("添加顾客信息")
-    @GetMapping("insert")
-    public Message insert(Customer record){
-
-        int insert=customerService.insert(record);
-        return MessageUtil.success("success",insert);
+    @ApiOperation("通过id删除客户信息")
+    @GetMapping("deleteById")
+    public Message deleteById(
+            @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) {
+        try {
+            customerService.deleteById(id);
+            return MessageUtil.message("删除成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MessageUtil.error(e.getMessage());
+        }
     }
-
-    @ApiOperation("更新顾客信息")
-    @GetMapping("update")
-    public Message updateByExampleSelective(Customer record){
-
-        int updateByExampleSelective=customerService.insert(record);
-        return MessageUtil.success("success",updateByExampleSelective);
-    }
-
-
     @ApiOperation("批量删除")
     @PostMapping("batchDelete")
     public Message batchDelete(@NotNull(message = "id不能为空") Long[] ids) throws Exception {
