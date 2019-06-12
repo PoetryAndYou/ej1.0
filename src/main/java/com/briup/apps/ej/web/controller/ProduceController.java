@@ -39,7 +39,7 @@ public class ProduceController {
     }
 
     @GetMapping("/saveOrUpdate")
-    @ApiOperation("更新删除product")
+    @ApiOperation("更新插入product")
     public Message saveOrUpdate(Product product) throws Exception {
 
         productService.saveOrUpdate(product);
