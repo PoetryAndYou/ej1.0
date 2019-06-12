@@ -2,6 +2,7 @@ package com.briup.apps.ej.service.Impl;
 
 import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.bean.ProductExample;
+import com.briup.apps.ej.bean.extend.ProductExtend;
 import com.briup.apps.ej.dao.ProductMapper;
 import com.briup.apps.ej.dao.extend.ProductExtendMapper;
 import com.briup.apps.ej.service.IProductService;
@@ -30,6 +31,19 @@ public class IProductServiceImpl implements IProductService {
     @Override
     public void creOrdLin(Integer num, Long id) {
         productExtendMapper.creOrdLin(num, id);
+    }
+
+    @Override
+    public void saveOrUpdate(Product product) throws Exception {
+        ProductExtend extend=new ProductExtend();
+        if(product.getId()==null){
+
+            productMapper.insert(product);
+        }else{
+            productMapper.updateByPrimaryKey(extend);
+        }
+
+
     }
 
 
