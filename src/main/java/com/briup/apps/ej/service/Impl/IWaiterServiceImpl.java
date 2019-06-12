@@ -21,20 +21,19 @@ public class IWaiterServiceImpl implements IWaiterService {
 //模糊查询
     @Override
     public List<Waiter> query(Waiter waiter) {
-        WaiterExample example = new WaiterExample();
+        WaiterExample waiterexample = new WaiterExample();
         if (waiter.getRealname() != null) {
-            example
-                    .createCriteria()
+            waiterexample.createCriteria()
                     .andTelephoneLike("%" + waiter.getTelephone() + "%");
         }
-        return waiterMapper.selectByExample(example);
+        return waiterMapper.selectByExample(waiterexample);
     }
 
 //查询所有的员工
     @Override
     public List<Waiter> findAll() {
-        WaiterExample example = new WaiterExample();
-        return waiterMapper.selectByExample(example);
+        WaiterExample waiterexample = new WaiterExample();
+        return waiterMapper.selectByExample(waiterexample);
     }
 
     @Override
@@ -53,7 +52,7 @@ public class IWaiterServiceImpl implements IWaiterService {
             waiterMapper.updateByPrimaryKey(waiter);
         }
     }
-//通过ID查找员工
+//通过ID删除员工
     @Override
     public void deleteById(long id) throws Exception {
         Waiter waiter = waiterMapper.selectByPrimaryKey(id);
@@ -63,23 +62,23 @@ public class IWaiterServiceImpl implements IWaiterService {
             waiterMapper.deleteByPrimaryKey(id);
         }
     }
-//插入新员工
-    @Override
-    public void insert(Waiter waiter) {
-
-    }
-    //
-    //@Override
-    //public void insert(Waiter waiter) throws Exception {
-    //    if (waiter.getId() == null) {
-    //        //初始化属性
-    //
-    //        waiter.getStatus();
-    //        waiterMapper.insert(waiter);
-    //    } else {
-    //        waiterMapper.insert(waiter);
-    //    }
-    //}
-
-
+///插入新员工
+//    @Override
+//    public void insert(Waiter waiter) {
+//
+//    }
+//    //
+//    //@Override
+//    //public void insert(Waiter waiter) throws Exception {
+//    //    if (waiter.getId() == null) {
+//    //        //初始化属性
+//    //
+//    //        waiter.getStatus();
+//    //        waiterMapper.insert(waiter);
+//    //    } else {
+//    //        waiterMapper.insert(waiter);
+//    //    }
+//    //}
+//
+//
 }

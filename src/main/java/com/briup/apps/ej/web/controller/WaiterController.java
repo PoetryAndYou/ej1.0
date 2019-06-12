@@ -76,18 +76,18 @@ public class WaiterController {
         }
     }
 
-    @ApiOperation("插入数据")
-    @GetMapping("insert")
-    public Message insert(Waiter waiter) {
-        try {
-            //waiterService.insert(waiter);
-            waiterService.saveOrUpdate(waiter);
-            return MessageUtil.success("success", waiter);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
-    }
+    //@ApiOperation("插入数据")
+    //@GetMapping("insert")
+    //public Message insert(Waiter waiter) {
+    //    try {
+    //        //waiterService.insert(waiter);
+    //        waiterService.saveOrUpdate(waiter);
+    //        return MessageUtil.success("success", waiter);
+    //    } catch (Exception e) {
+    //        e.printStackTrace();
+    //        return MessageUtil.error(e.getMessage());
+    //    }
+    //}
 
 
 }
