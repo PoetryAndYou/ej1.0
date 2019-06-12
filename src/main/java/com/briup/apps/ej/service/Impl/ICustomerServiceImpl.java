@@ -1,7 +1,5 @@
 package com.briup.apps.ej.service.Impl;
 
-import com.briup.apps.ej.bean.Address;
-import com.briup.apps.ej.bean.AddressExample;
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.bean.CustomerExample;
 import com.briup.apps.ej.dao.CustomerMapper;
@@ -56,9 +54,10 @@ public class ICustomerServiceImpl  implements ICustomerService {
     @Override
     public void saveOrupdate(Customer customer) throws Exception {
         if (customer.getId() == null) {
-
+            customer.setStatus("正常");
             customerMapper.insert(customer);
         } else {
+            customer.setStatus("正常");
             customerMapper.updateByPrimaryKey(customer);
         }
     }

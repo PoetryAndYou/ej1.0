@@ -8,11 +8,10 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -21,7 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/category")
-
+@Validated
 public class CategoryController {
     @Autowired
     private ICategoryService categoryService;
@@ -44,11 +43,11 @@ public class CategoryController {
         return MessageUtil.success("success",category);
     }
     @ApiOperation("保存或更新类别信息")
-    @GetMapping("saveOrupdate")
+    @PostMapping("saveOrupdate")
     public Message saveOrupdate(Category category) {
         try {
             categoryService.saveOrupdate(category);
-            return MessageUtil.message("success");
+            return MessageUtil.message("更新成功");
         } catch (Exception e) {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
@@ -72,5 +71,11 @@ public class CategoryController {
         List<CategoryExtend> list=categoryService.findAllP(id);
         return MessageUtil.success("sucess",list);
 
+    }
+    @ApiOperation("批量删除类别信息")
+    @PostMapping("batchDelete")
+    public Message batchDelete(@NotNull(message = "ids不能为空") Long[] ids) throws Exception{
+        categoryService.batchDelete(ids);
+        return MessageUtil.message("批量删除成功");
     }
 }

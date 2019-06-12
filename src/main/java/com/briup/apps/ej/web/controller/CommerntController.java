@@ -7,11 +7,10 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -19,8 +18,8 @@ import java.util.List;
  * @create 2019-06-10 13:42
  */
 @RestController
-@RequestMapping
-
+@RequestMapping("/comment")
+@Validated
 public class CommerntController {
     @Autowired
     private ICommentService commentService;
@@ -43,11 +42,11 @@ public class CommerntController {
         return MessageUtil.success("success",comment);
     }
     @ApiOperation("保存或更新评论信息")
-    @GetMapping("saveOrupdate")
+    @PostMapping ("saveOrupdate")
     public Message saveOrupdate(Comment comment) {
         try {
             commentService.saveOrupdate(comment);
-            return MessageUtil.message("success");
+            return MessageUtil.message("更新成功");
         } catch (Exception e) {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
@@ -64,5 +63,11 @@ public class CommerntController {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
         }
+    }
+    @ApiOperation("批量删除评论信息")
+    @PostMapping("batchDelete")
+    public Message batchDelete(@NotNull(message = "ids不能为空") Long[] ids) throws Exception{
+        commentService.batchDelete(ids);
+        return MessageUtil.message("批量删除成功");
     }
 }

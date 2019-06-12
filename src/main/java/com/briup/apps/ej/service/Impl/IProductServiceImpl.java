@@ -1,9 +1,7 @@
 package com.briup.apps.ej.service.Impl;
 
-import com.briup.apps.ej.bean.OrderExample;
 import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.bean.ProductExample;
-import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.dao.ProductMapper;
 import com.briup.apps.ej.dao.extend.ProductExtendMapper;
 import com.briup.apps.ej.service.IProductService;

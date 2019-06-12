@@ -47,7 +47,7 @@ public class AddressController {
     public Message saveOrupdate(Address address) {
         try {
             addressService.saveOrupdate(address);
-            return MessageUtil.message("success");
+            return MessageUtil.message("更新成功");
         } catch (Exception e) {
             e.printStackTrace();
             return MessageUtil.error(e.getMessage());
