@@ -70,8 +70,9 @@ public class OrderController {
 
     @ApiOperation("删除订单")
     @GetMapping("deleteById")
-    public void deleteById(Long id) throws Exception {
+    public Message deleteById(Long id) throws Exception {
         orderService.deleteById(id);
+        return MessageUtil.message("删除成功");
     }
 
     @ApiOperation("查询订单")
