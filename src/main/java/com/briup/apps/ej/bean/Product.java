@@ -1,5 +1,11 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
+
+import javax.validation.constraints.NotBlank;
+
+@ApiModel("产品模型")
 public class Product {
     /**
      *
@@ -17,6 +23,8 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "名称")
+    @NotBlank(message = "名称不能为空")
     private String name;
 
     /**
@@ -26,6 +34,8 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "描述")
+    @NotBlank(message = "描述不能为空")
     private String description;
 
     /**
@@ -35,6 +45,8 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "单价")
+    @NotBlank(message = "单价不能为空")
     private Double price;
 
     /**
@@ -44,6 +56,8 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "状态")
+    @NotBlank(message = "状态不能为空")
     private String status;
 
     /**
@@ -53,6 +67,8 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "图片")
+    @NotBlank(message = "图片不能为空")
     private String photo;
 
     /**

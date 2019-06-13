@@ -1,5 +1,11 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
+
+import javax.validation.constraints.NotBlank;
+
+@ApiModel("地址模型")
 public class Address {
     /**
      *
@@ -8,6 +14,7 @@ public class Address {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+
     private Long id;
 
     /**
@@ -17,6 +24,8 @@ public class Address {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "省份")
+    @NotBlank(message = "省份不能为空")
     private String province;
 
     /**
@@ -26,6 +35,8 @@ public class Address {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "城市名")
+    @NotBlank(message = "城市名不能为空")
     private String city;
 
     /**
@@ -44,6 +55,8 @@ public class Address {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "地址")
+    @NotBlank(message = "地址不能为空")
     private String address;
 
     /**
@@ -53,6 +66,8 @@ public class Address {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "电话号")
+    @NotBlank(message = "电话号不能为空")
     private String telephone;
 
     /**
