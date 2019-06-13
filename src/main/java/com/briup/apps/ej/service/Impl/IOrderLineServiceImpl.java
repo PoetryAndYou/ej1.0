@@ -47,7 +47,7 @@ public class IOrderLineServiceImpl implements IOrderLineService {
 
     @Override
     public void deleteById(Long id) throws Exception {
-        OrderLine orderLine = findOrder(id);
+        OrderLine orderLine = orderLineMapper.selectByPrimaryKey(id);
         if (orderLine == null) {
             throw new Exception("该orderline不存在");
         } else {

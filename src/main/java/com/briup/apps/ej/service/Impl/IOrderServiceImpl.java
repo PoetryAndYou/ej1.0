@@ -67,7 +67,7 @@ public class IOrderServiceImpl implements IOrderService {
 
     @Override
     public void deleteById(Long id) throws Exception {
-        Order order = findById(id);
+        Order order = orderMapper.selectByPrimaryKey(id);
         if (order == null) {
             throw new Exception("要删除的order不存在");
         } else {
