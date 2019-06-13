@@ -23,8 +23,7 @@ public class OrderLine {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
-    @ApiParam(value = "数量")
-    @NotBlank(message = "数量不能为空")
+    @ApiParam(value = "服务数量",required = true)
     private Integer number;
 
     /**
@@ -34,6 +33,7 @@ public class OrderLine {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "服务",required = true)
     private Long productId;
 
     /**

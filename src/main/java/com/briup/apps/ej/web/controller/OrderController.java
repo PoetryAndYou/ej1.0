@@ -2,17 +2,17 @@ package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderLine;
+import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
+import com.briup.apps.ej.bean.VM.OrderVM;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -96,4 +96,17 @@ public class OrderController {
         return MessageUtil.success("sucess", list);
     }
 
+    @ApiOperation("查询订单信息，并且订单级联关联属性")
+    @GetMapping("queryBasic")
+    public Message queryBasic(Long customerId, Long waiterId) {
+        List<OrderVM> list = orderService.queryBasic(customerId, waiterId);
+        return MessageUtil.success("sucess", list);
+    }
+
+    @PostMapping("save")
+    @ApiOperation("保存订单信息")
+    public Message saveOrUpdate(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception {
+        orderService.save(order);
+        return MessageUtil.message("成功");
+    }
 }
