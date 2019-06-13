@@ -45,7 +45,7 @@ public class                                                                    
     }
     @ApiOperation("保存或更新类别信息")
     @PostMapping("saveOrupdate")
-    public Message saveOrupdate(@Valid @ModelAttribute Category category) throws Exception{
+    public Message saveOrupdate( Category category) throws Exception{
             categoryService.saveOrupdate(category);
             return MessageUtil.message("更新成功");
     }

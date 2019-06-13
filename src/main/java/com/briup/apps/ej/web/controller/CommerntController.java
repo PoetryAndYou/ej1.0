@@ -44,7 +44,7 @@ public class CommerntController {
     }
     @ApiOperation("保存或更新评论信息")
     @PostMapping ("saveOrupdate")
-    public Message saveOrupdate(@Valid @ModelAttribute Comment comment) throws Exception {
+    public Message saveOrupdate( Comment comment) throws Exception {
             commentService.saveOrupdate(comment);
             return MessageUtil.message("更新成功");
 

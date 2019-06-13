@@ -40,7 +40,7 @@ public class ProduceController {
 
     @PostMapping("/saveOrupdate")
     @ApiOperation("更新插入product")
-    public Message saveOrupdate(@Valid @ModelAttribute Product product) throws Exception {
+    public Message saveOrupdate( Product product) throws Exception {
 
         productService.saveOrupdate(product);
         return MessageUtil.message("成功");

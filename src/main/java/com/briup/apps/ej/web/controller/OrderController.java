@@ -5,18 +5,20 @@ import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
-import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
  * @author rui
  * @create 2019-06-10 13:42
  */
+@Validated
 @RestController
 @RequestMapping("/order")
 
@@ -61,7 +63,7 @@ public class OrderController {
 
     @ApiOperation("创建或更新订单")
     @PostMapping("saveOrupdate")
-    public Message saveOrUpdate(@Valid @ModelAttribute Order order) throws Exception {
+    public Message saveOrUpdate( Order order) throws Exception {
         orderService.saveOrupdate(order);
         return MessageUtil.message("成功");
     }
@@ -82,7 +84,7 @@ public class OrderController {
 
     @ApiOperation("批量删除")
     @PostMapping("batchDelete")
-    public Message batchDelete(Long[] ids) throws Exception {
+    public Message batchDelete(@NotNull(message = "id不能为空") Long[] ids) throws Exception {
         orderService.batchDelete(ids);
         return MessageUtil.message("删除成功");
     }
