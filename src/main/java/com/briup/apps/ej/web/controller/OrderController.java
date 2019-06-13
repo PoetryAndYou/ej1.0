@@ -62,16 +62,17 @@ public class OrderController {
     }
 
     @ApiOperation("创建或更新订单")
-    @GetMapping("saveOrupdate")
+    @PostMapping("saveOrupdate")
     public Message saveOrUpdate(Order order) throws Exception {
         orderService.saveOrupdate(order);
         return MessageUtil.message("成功");
     }
 
     @ApiOperation("删除订单")
-    @GetMapping("deleteOrder")
-    public void deleteOrder(Long id) throws Exception {
-        orderService.deleteOrder(id);
+    @GetMapping("deleteById")
+    public Message deleteById(Long id) throws Exception {
+        orderService.deleteById(id);
+        return MessageUtil.message("删除成功");
     }
 
     @ApiOperation("查询订单")
@@ -81,9 +82,9 @@ public class OrderController {
         return MessageUtil.success("sucess", order);
     }
     @ApiOperation("批量删除")
-    @PostMapping("batchDeletion")
-    public Message batchDeletion(Long[] ids) throws Exception {
-        orderService.batchDeletion(ids);
+    @PostMapping("batchDelete")
+    public Message batchDelete(Long[] ids) throws Exception {
+        orderService.batchDelete(ids);
         return MessageUtil.message("删除成功");
     }
 }
