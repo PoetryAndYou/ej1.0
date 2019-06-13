@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -44,18 +45,17 @@ public class AddressController {
     }
     @ApiOperation("保存或更新地址信息")
     @PostMapping ("saveOrupdate")
-    public Message saveOrupdate(Address address) throws Exception {
+    public Message saveOrupdate(@Valid @ModelAttribute Address address) throws Exception {
             addressService.saveOrupdate(address);
             return MessageUtil.message("更新成功");
     }
     @ApiOperation("通过id删除地址信息")
     @GetMapping("deleteById")
-    public Message deleteById(
-           @NotNull @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) throws Exception {
+    public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception {
             addressService.deleteById(id);
             return MessageUtil.message("删除成功");
     }
-
+//增加了批量删除地址信息
     @ApiOperation("批量删除地址信息")
     @PostMapping("batchDelete")
     public Message batchDelete(@NotNull(message = "ids不能为空") Long[] ids) throws Exception{

@@ -8,11 +8,10 @@ import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -35,18 +34,18 @@ public class OrderLineController {
 
     @PostMapping("/saveOrupdate")
     @ApiOperation("更新或插入")
-    public Message saveOrUpdate(OrderLine orderLine) throws Exception {
+    public Message saveOrUpdate(@Valid @ModelAttribute OrderLine orderLine) throws Exception {
         orderLineService.saveOrupdate(orderLine);
         return MessageUtil.message("更新或插入成功");
     }
 
     @GetMapping("/deleteById")
     @ApiOperation("删除orderline")
-    public Message deleteById(Long id) throws Exception {
+    public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception {
         orderLineService.deleteById(id);
         return MessageUtil.message("删除成功");
     }
-
+//批量删除
     @ApiOperation("批量删除")
     @PostMapping("batchDelete")
     public Message batchDeletion(Long[] ids) throws Exception {
