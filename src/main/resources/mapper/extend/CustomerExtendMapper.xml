@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.ej.dao.extend.CustomerExtendMapper" >
+    <select  resultMap="BaseResultMap" id="findMyAddress" >
+    select
+      ad.id as ad_id,
+      ad.province,
+      ad.city,
+      ad.area,
+      ad.address,
+      ad.telephone
+      from ej_customer cu left join  ej_address ad
+      on cu.id=ad.customer_id and cu.id=#{id}
+</select>
+    <resultMap id="BaseResultMap" type="com.briup.apps.ej.bean.extend.CustomerExtend" >
+        <association property="address" javaType="com.briup.apps.ej.bean.Address" >
+            <id column="o_id" property="id"/>
+            <result column="province" property="province" />
+            <result column="city" property="city"/>
+            <result column="area" property="area"/>
+            <result column="address" property="address"/>
+            <result column="telephone" property="telephone"/>
+        </association>
+    </resultMap>
+</mapper>
