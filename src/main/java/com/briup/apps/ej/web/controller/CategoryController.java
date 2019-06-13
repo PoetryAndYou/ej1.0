@@ -51,7 +51,7 @@ public class                                                                    
     }
     @ApiOperation("通过id删除类别信息")
     @GetMapping("deleteById")
-    public Message deleteById(@NotNull @RequestParam("id") long id) throws Exception {
+    public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception {
             categoryService.deleteById(id);
             return MessageUtil.message("删除成功");
     }

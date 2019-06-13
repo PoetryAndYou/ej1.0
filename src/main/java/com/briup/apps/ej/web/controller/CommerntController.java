@@ -51,8 +51,7 @@ public class CommerntController {
     }
     @ApiOperation("通过id删除评论信息")
     @GetMapping("deleteById")
-    public Message deleteById(
-            @NotNull @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) throws  Exception{
+    public Message deleteById(@NotNull @RequestParam("id")  Long id) throws  Exception{
             commentService.deleteById(id);
             return MessageUtil.message("删除成功");
     }
