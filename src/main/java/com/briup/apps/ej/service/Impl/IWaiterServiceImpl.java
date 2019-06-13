@@ -62,7 +62,7 @@ public class IWaiterServiceImpl implements IWaiterService {
             waiterMapper.deleteByPrimaryKey(id);
         }
     }
-
+//批量删除员工
     @Override
     public void batchDelete(Long[] ids) throws Exception {
         for(long id :ids){
