@@ -2,6 +2,7 @@ package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Address;
 import com.briup.apps.ej.bean.Customer;
+import com.briup.apps.ej.bean.extend.CustomerExtend;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface ICustomerService {
     void deleteById(long id) throws Exception;
     void batchDelete(Long ids[])throws  Exception;
 
-
+    List<CustomerExtend> findMyAddress(Long id);    //查找用户自己的地址
 }

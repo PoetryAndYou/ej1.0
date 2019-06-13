@@ -24,8 +24,9 @@ public class IOrderServiceImpl implements IOrderService {
 
     /**
      * 查询所有订单
-     * @return
+     *
      * @param
+     * @return
      */
     @Override
     public List<Order> findAll() {
@@ -54,10 +55,10 @@ public class IOrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public  void saveOrUpdate(Order order) throws Exception{
-        if(order.getId()==null){
+    public void saveOrupdate(Order order) throws Exception {
+        if (order.getId() == null) {
             orderMapper.insert(order);
-        }else{
+        } else {
             orderMapper.updateByPrimaryKey(order);
 
         }
@@ -66,18 +67,28 @@ public class IOrderServiceImpl implements IOrderService {
 
     @Override
     public void deleteOrder(Long id) throws Exception {
-        Order order=findById(id);
-        if(order==null){
+        Order order = findById(id);
+        if (order == null) {
             throw new Exception("要删除的order不存在");
-        }else{
+        } else {
             orderMapper.deleteByPrimaryKey(id);
         }
     }
 
     @Override
     public Order findById(Long id) {
-        OrderExample example=new OrderExample();
+        OrderExample example = new OrderExample();
         return orderMapper.selectByPrimaryKey(id);
 
     }
+
+    @Override
+    public void batchDeletion(Long[] ids) throws Exception {
+        for (Long id : ids
+        ) {
+            deleteOrder(id);
+        }
+    }
+
+
 }

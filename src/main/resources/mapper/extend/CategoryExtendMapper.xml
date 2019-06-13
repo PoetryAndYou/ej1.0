@@ -12,7 +12,7 @@
       from
     ej_category c left join  ej_product p
    on
-     p.category_id=c.id and c.id=#{id}
+     p.category_id=c.id and c.id=#{0id}
 </select>
     <resultMap id="BaseResultMap" type="com.briup.apps.ej.bean.extend.CategoryExtend" >
         <association property="product" javaType="com.briup.apps.ej.bean.Product" >

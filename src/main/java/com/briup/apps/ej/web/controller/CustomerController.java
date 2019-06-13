@@ -1,6 +1,8 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Customer;
+import com.briup.apps.ej.bean.extend.CustomerExtend;
+import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.ICustomerService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
@@ -68,5 +70,11 @@ public class CustomerController {
         for (Long id : ids)
             customerService.batchDelete(ids);
         return MessageUtil.message("成功");
+    }
+    @ApiOperation("查询用户的地址信息")
+    @GetMapping("findMyAddress")
+    public Message findMyAddress(Long id) {
+        List<CustomerExtend> list = customerService.findMyAddress(id);
+        return MessageUtil.success("success", list);
     }
 }
