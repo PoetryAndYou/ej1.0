@@ -2,7 +2,9 @@ package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderLine;
+import com.briup.apps.ej.bean.extend.OrderLineExtend;
 
+import java.util.List;
 
 
 /**
@@ -17,5 +19,7 @@ public interface IOrderLineService {
     void delete(Long id) throws Exception;
     //批量删除
     void batchDeletion(Long[] ids)throws Exception;
+    //通过订单项查询产品和订单信息
+    List<OrderLineExtend> selectById(Long id)throws Exception;
 
 }

@@ -19,7 +19,7 @@ import java.util.List;
  * @create 2019-06-10 13:43
  */
 @RestController
-@RequestMapping("/produce")
+@RequestMapping("/product")
 public class ProduceController {
     @Autowired
     private IProductService productService;
@@ -33,7 +33,7 @@ public class ProduceController {
     }
 
     @GetMapping("/creOrdLin")
-    @ApiOperation("创建订单链接，产品数量，产品id")
+    @ApiOperation("输入产品id和数量产生订单项")
     public Message creOrdLin(Integer num, Long id) {
         productService.creOrdLin(num, id);
         return MessageUtil.message("创建成功");
