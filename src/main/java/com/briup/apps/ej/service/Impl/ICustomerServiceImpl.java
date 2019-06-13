@@ -57,7 +57,6 @@ public class ICustomerServiceImpl  implements ICustomerService {
             customer.setStatus("正常");
             customerMapper.insert(customer);
         } else {
-            customer.setStatus("正常");
             customerMapper.updateByPrimaryKey(customer);
         }
     }
