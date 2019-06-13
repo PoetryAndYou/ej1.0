@@ -46,7 +46,7 @@ public class IOrderLineServiceImpl implements IOrderLineService {
     }
 
     @Override
-    public void delete(Long id) throws Exception {
+    public void deleteById(Long id) throws Exception {
         OrderLine orderLine = findOrder(id);
         if (orderLine == null) {
             throw new Exception("该orderline不存在");
@@ -56,10 +56,10 @@ public class IOrderLineServiceImpl implements IOrderLineService {
     }
 
     @Override
-    public void batchDeletion(Long[] ids) throws Exception {
+    public void batchDelete(Long[] ids) throws Exception {
         for (Long id : ids
         ) {
-            delete(id);
+            deleteById(id);
         }
     }
 

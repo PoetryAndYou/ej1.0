@@ -40,17 +40,17 @@ public class OrderLineController {
         return MessageUtil.message("更新或插入成功");
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/deleteById")
     @ApiOperation("删除orderline")
-    public Message delete(Long id) throws Exception {
-        orderLineService.delete(id);
+    public Message deleteById(Long id) throws Exception {
+        orderLineService.deleteById(id);
         return MessageUtil.message("删除成功");
     }
 
     @ApiOperation("批量删除")
-    @PostMapping("batchDeletion")
+    @PostMapping("batchDelete")
     public Message batchDeletion(Long[] ids) throws Exception {
-        orderLineService.batchDeletion(ids);
+        orderLineService.batchDelete(ids);
         return MessageUtil.message("删除成功");
     }
     @ApiOperation("通过订单项id查询所有订单")

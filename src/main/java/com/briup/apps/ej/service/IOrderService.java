@@ -24,11 +24,11 @@ public interface IOrderService {
     //创建新订单
     void saveOrupdate(Order order) throws Exception;
     //    删除order
-    void deleteOrder(Long id)  throws Exception;
+    void deleteById(Long id)  throws Exception;
     //查询订单
     Order findById(Long id);
 
     //批量删除
-    void batchDeletion(Long[] ids) throws Exception;
+    void batchDelete(Long[] ids) throws Exception;
 
 }
