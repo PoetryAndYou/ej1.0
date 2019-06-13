@@ -81,10 +81,19 @@ public class OrderController {
         Order order = orderService.findById(id);
         return MessageUtil.success("sucess", order);
     }
+
     @ApiOperation("批量删除")
     @PostMapping("batchDelete")
     public Message batchDelete(Long[] ids) throws Exception {
         orderService.batchDelete(ids);
         return MessageUtil.message("删除成功");
     }
+
+    @ApiOperation("查询订单信息，并且订单级联关联属性")
+    @GetMapping("query")
+    public Message query(Long customerId, Long waiterId) {
+        List<OrderExtend> list = orderService.query(customerId, waiterId);
+        return MessageUtil.success("sucess", list);
+    }
+
 }
