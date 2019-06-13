@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/category")
 @Validated
-public class CategoryController {
+public class                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             CategoryController {
     @Autowired
     private ICategoryService categoryService;
     @ApiOperation("模糊查询")
