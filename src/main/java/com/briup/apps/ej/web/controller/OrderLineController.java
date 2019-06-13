@@ -33,7 +33,7 @@ public class OrderLineController {
         return MessageUtil.success("success", ord);
     }
 
-    @GetMapping("/saveOrupdate")
+    @PostMapping("/saveOrupdate")
     @ApiOperation("更新或插入")
     public Message saveOrUpdate(OrderLine orderLine) throws Exception {
         orderLineService.saveOrupdate(orderLine);
@@ -54,7 +54,7 @@ public class OrderLineController {
         return MessageUtil.message("删除成功");
     }
     @ApiOperation("通过订单项id查询所有订单")
-    @PostMapping("selectById")
+    @GetMapping("selectById")
     public Message selectById(Long id) throws Exception {
         List<OrderLineExtend> list=orderLineService.selectById(id);
         return MessageUtil.success("查询成功",list);

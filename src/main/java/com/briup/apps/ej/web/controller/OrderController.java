@@ -62,7 +62,7 @@ public class OrderController {
     }
 
     @ApiOperation("创建或更新订单")
-    @GetMapping("saveOrupdate")
+    @PostMapping("saveOrupdate")
     public Message saveOrUpdate(Order order) throws Exception {
         orderService.saveOrupdate(order);
         return MessageUtil.message("成功");

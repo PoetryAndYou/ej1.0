@@ -39,7 +39,7 @@ public class ProduceController {
         return MessageUtil.message("创建成功");
     }
 
-    @GetMapping("/saveOrupdate")
+    @PostMapping("/saveOrupdate")
     @ApiOperation("更新插入product")
     public Message saveOrupdate(Product product) throws Exception {
 
