@@ -64,6 +64,7 @@ public class WaiterController {
             return MessageUtil.message("删除成功");
 
     }
+    //增加了批量删除员工信息
     @ApiOperation("批量删除员工信息")
     @PostMapping("batchDelete")
     public Message batchDelete(@NotNull(message = "id不能为空") Long[] ids) throws Exception {
