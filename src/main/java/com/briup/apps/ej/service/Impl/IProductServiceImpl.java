@@ -34,12 +34,12 @@ public class IProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void saveOrUpdate(Product product) throws Exception {
-        ProductExtend extend=new ProductExtend();
-        if(product.getId()==null){
+    public void saveOrupdate(Product product) throws Exception {
+        ProductExtend extend = new ProductExtend();
+        if (product.getId() == null) {
 
             productMapper.insert(product);
-        }else{
+        } else {
             productMapper.updateByPrimaryKey(extend);
         }
 
@@ -47,17 +47,25 @@ public class IProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Product findById(Long id)  {
+    public Product findById(Long id) {
         return productMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public void deleteById(Long id) throws Exception {
-        Product product=productMapper.selectByPrimaryKey(id);
-        if(product==null){
+        Product product = productMapper.selectByPrimaryKey(id);
+        if (product == null) {
             throw new Exception("没有该订单");
-        }else{
+        } else {
             productMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+    @Override
+    public void batchDeletion(Long[] ids) throws Exception {
+        for (Long id : ids
+        ) {
+            deleteById(id);
         }
     }
 

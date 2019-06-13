@@ -8,6 +8,7 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,11 +39,11 @@ public class ProduceController {
         return MessageUtil.message("创建成功");
     }
 
-    @GetMapping("/saveOrUpdate")
+    @GetMapping("/saveOrupdate")
     @ApiOperation("更新插入product")
-    public Message saveOrUpdate(Product product) throws Exception {
+    public Message saveOrupdate(Product product) throws Exception {
 
-        productService.saveOrUpdate(product);
+        productService.saveOrupdate(product);
         return MessageUtil.message("成功");
     }
 
@@ -57,6 +58,13 @@ public class ProduceController {
     @ApiOperation("删除product")
     public Message deleteById(Long id) throws Exception {
         productService.deleteById(id);
+        return MessageUtil.message("删除成功");
+    }
+    @ApiOperation("批量删除")
+    @PostMapping("batchDeletion")
+    public Message batchDeletion(Long[] ids) throws Exception {
+
+        productService.batchDeletion(ids);
         return MessageUtil.message("删除成功");
     }
 
