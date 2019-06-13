@@ -34,8 +34,7 @@ public class Category {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
-    @ApiParam(value = "数量")
-    @NotBlank(message = "数量不能为空")
+
     private Integer num;
 
     /**

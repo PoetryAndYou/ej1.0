@@ -82,4 +82,5 @@
             <result column="photo" property="photo"/>
         </association>
     </resultMap>
+
 </mapper>
