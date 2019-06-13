@@ -8,6 +8,7 @@ import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,10 +30,10 @@ public class OrderLineController {
         return MessageUtil.success("success", ord);
     }
 
-    @GetMapping("/saveOrUpdate")
+    @GetMapping("/saveOrupdate")
     @ApiOperation("更新或插入")
     public Message saveOrUpdate(OrderLine orderLine) throws Exception {
-        orderLineService.saveOrUpdate(orderLine);
+        orderLineService.saveOrupdate(orderLine);
         return MessageUtil.message("更新或插入成功");
     }
 
@@ -41,5 +42,13 @@ public class OrderLineController {
     public Message delete(Long id) throws Exception {
         orderLineService.delete(id);
         return MessageUtil.message("删除成功");
+    }
+
+    @ApiOperation("批量删除")
+    @PostMapping("batchDeletion")
+    public Message batchDeletion(Long[] ids) throws Exception {
+        orderLineService.batchDeletion(ids);
+        return MessageUtil.message("删除成功");
+
     }
 }

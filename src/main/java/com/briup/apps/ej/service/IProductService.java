@@ -13,9 +13,12 @@ public interface IProductService {
     List<Product> findALLPro();
     public void creOrdLin(Integer num,Long id);
 
-    void saveOrUpdate(Product product)throws Exception;
+    void saveOrupdate(Product product)throws Exception;
 
     Product findById(Long id);
 
     void deleteById(Long id)throws Exception;
+
+    //批量删除
+    void batchDeletion(Long[] ids)throws Exception;
  }
