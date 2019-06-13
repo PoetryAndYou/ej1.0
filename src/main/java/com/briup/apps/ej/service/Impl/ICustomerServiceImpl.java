@@ -2,7 +2,9 @@ package com.briup.apps.ej.service.Impl;
 
 import com.briup.apps.ej.bean.Customer;
 import com.briup.apps.ej.bean.CustomerExample;
+import com.briup.apps.ej.bean.extend.CustomerExtend;
 import com.briup.apps.ej.dao.CustomerMapper;
+import com.briup.apps.ej.dao.extend.CustomerExtendMapper;
 import com.briup.apps.ej.service.ICustomerService;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +19,8 @@ import java.util.List;
 public class ICustomerServiceImpl  implements ICustomerService {
     @Resource
     private CustomerMapper customerMapper;
-
+     @Resource
+     private CustomerExtendMapper customerExtendMapper;
 
     @Override
     public List<Customer> query(Customer customer) {
@@ -77,4 +80,11 @@ public class ICustomerServiceImpl  implements ICustomerService {
             customerMapper.deleteByPrimaryKey(id);
         }
     }
+
+    @Override
+    public List<CustomerExtend> findMyAddress(Long id) {
+        return customerExtendMapper.findMyAddress(id);
+    }
+
+
 }
