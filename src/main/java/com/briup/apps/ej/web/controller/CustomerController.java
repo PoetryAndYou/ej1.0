@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class CustomerController {
 
     @ApiOperation("保存或更新客户信息")
     @PostMapping("saveOrupdate")
-    public Message saveOrupdate(Customer customer) throws Exception {
+    public Message saveOrupdate(@Valid @ModelAttribute Customer customer) throws Exception {
             customerService.saveOrupdate(customer);
             return MessageUtil.message("更新成功");
 
@@ -57,8 +58,7 @@ public class CustomerController {
 
     @ApiOperation("通过id删除客户信息")
     @GetMapping("deleteById")
-    public Message deleteById(
-            @NotNull @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) throws Exception {
+    public Message deleteById(@NotNull @RequestParam("id") long id) throws Exception {
             customerService.deleteById(id);
             return MessageUtil.message("删除成功");
 

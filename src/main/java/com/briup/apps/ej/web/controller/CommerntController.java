@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -37,13 +38,13 @@ public class CommerntController {
     }
     @ApiOperation("通过id查询评论")
     @GetMapping("findById")
-    public Message findById(@ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) {
+    public Message findById(@NotNull @RequestParam("id") long id) {
         Comment comment=commentService.findById(id);
         return MessageUtil.success("success",comment);
     }
     @ApiOperation("保存或更新评论信息")
     @PostMapping ("saveOrupdate")
-    public Message saveOrupdate(Comment comment) throws Exception {
+    public Message saveOrupdate(@Valid @ModelAttribute Comment comment) throws Exception {
             commentService.saveOrupdate(comment);
             return MessageUtil.message("更新成功");
 

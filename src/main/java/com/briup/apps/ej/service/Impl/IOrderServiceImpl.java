@@ -66,8 +66,8 @@ public class IOrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void deleteOrder(Long id) throws Exception {
-        Order order = findById(id);
+    public void deleteById(Long id) throws Exception {
+        Order order = orderMapper.selectByPrimaryKey(id);
         if (order == null) {
             throw new Exception("要删除的order不存在");
         } else {
@@ -83,11 +83,16 @@ public class IOrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void batchDeletion(Long[] ids) throws Exception {
+    public void batchDelete(Long[] ids) throws Exception {
         for (Long id : ids
         ) {
-            deleteOrder(id);
+            deleteById(id);
         }
+    }
+
+    @Override
+    public List<OrderExtend> query(Long customerId, Long waiterId) {
+        return orderExtendMapper.query(customerId, waiterId);
     }
 
 

@@ -7,11 +7,10 @@ import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ import java.util.List;
  * @create 2019-06-10 13:43
  */
 @RestController
-@RequestMapping("/produce")
+@RequestMapping("/product")
 public class ProduceController {
     @Autowired
     private IProductService productService;
@@ -33,15 +32,15 @@ public class ProduceController {
     }
 
     @GetMapping("/creOrdLin")
-    @ApiOperation("创建订单链接，产品数量，产品id")
+    @ApiOperation("输入产品id和数量产生订单项")
     public Message creOrdLin(Integer num, Long id) {
         productService.creOrdLin(num, id);
         return MessageUtil.message("创建成功");
     }
 
-    @GetMapping("/saveOrupdate")
+    @PostMapping("/saveOrupdate")
     @ApiOperation("更新插入product")
-    public Message saveOrupdate(Product product) throws Exception {
+    public Message saveOrupdate(@Valid @ModelAttribute Product product) throws Exception {
 
         productService.saveOrupdate(product);
         return MessageUtil.message("成功");
@@ -56,7 +55,7 @@ public class ProduceController {
 
     @GetMapping("/deleteById")
     @ApiOperation("删除product")
-    public Message deleteById(Long id) throws Exception {
+    public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception {
         productService.deleteById(id);
         return MessageUtil.message("删除成功");
     }

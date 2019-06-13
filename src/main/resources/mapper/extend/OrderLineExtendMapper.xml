@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.ej.dao.extend.OrderLineExtendMapper">
+    <select id="selectById" resultMap="BaseResultMap">
+         select
+         o.id,
+         l.number,
+         o.order_time,
+         o.total
+        from
+         ej_order_line l join ej_order o
+                on  l.order_id=o.id and l.id=#{id}
+    </select>
+    <resultMap id="BaseResultMap" type="com.briup.apps.ej.bean.extend.OrderLineExtend">
+       <association property="order" javaType="com.briup.apps.ej.bean.Order">
+           <id property="id" column="id"></id>
+           <result column="order_time" property="orderTime" ></result>
+           <result column="total" property="total"></result>
+       </association>
+        <collection property="product" column="product" ofType="com.briup.apps.ej.bean.Product" select="selectById">
+
+
+        </collection>
+    </resultMap>
+
+</mapper>
