@@ -90,5 +90,10 @@ public class IOrderServiceImpl implements IOrderService {
         }
     }
 
+    @Override
+    public List<OrderExtend> query(Long customerId, Long waiterId) {
+        return orderExtendMapper.query(customerId, waiterId);
+    }
+
 
 }

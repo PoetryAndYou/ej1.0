@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.briup.apps.ej.dao.extend.OrderExtendMapper" >
-    <select  resultMap="BaseResultMap" id="findAllComment" >
+<mapper namespace="com.briup.apps.ej.dao.extend.OrderExtendMapper">
+    <select resultMap="BaseResultMap" id="findAllComment">
     select
       c.id as co_id,
       c.content,
@@ -9,15 +9,15 @@
       from ej_order o left join  ej_comment c
       on c.order_id=o.id and c.id=#{id}
 </select>
-    <resultMap id="BaseResultMap" type="com.briup.apps.ej.bean.extend.OrderExtend" >
-        <association property="comment" javaType="com.briup.apps.ej.bean.Comment" >
+    <resultMap id="BaseResultMap" type="com.briup.apps.ej.bean.extend.OrderExtend">
+        <association property="comment" javaType="com.briup.apps.ej.bean.Comment">
             <id column="co_id" property="id"/>
             <result column="content" property="content"/>
             <result column="commentTime" property="commentTime"/>
             <result column="orderId" property="orderId"/>
         </association>
     </resultMap>
-    <select  resultMap="BaseResultMap1" id="findAllAddress" >
+    <select resultMap="BaseResultMap1" id="findAllAddress">
     select
       ad.id as ad_id,
       ad.province,
@@ -28,8 +28,8 @@
       from ej_order o left join  ej_address ad
       on o.address_id=ad.id and o.id=#{id}
 </select>
-    <resultMap id="BaseResultMap1" type="com.briup.apps.ej.bean.extend.OrderExtend" >
-        <association property="address" javaType="com.briup.apps.ej.bean.Address" >
+    <resultMap id="BaseResultMap1" type="com.briup.apps.ej.bean.extend.OrderExtend">
+        <association property="address" javaType="com.briup.apps.ej.bean.Address">
             <id column="ad_id" property="id"/>
             <result column="province" property="province"/>
             <result column="city" property="city"/>
@@ -38,7 +38,7 @@
             <result column="telephone" property="telephone"/>
         </association>
     </resultMap>
-    <select  resultMap="BaseResultMap2" id="findAllCustomer" >
+    <select resultMap="BaseResultMap2" id="findAllCustomer">
     select
       cu.id as cu_id,
       cu.telephone,
@@ -49,8 +49,8 @@
       from ej_order o left join  ej_customer cu
       on o.customer_id=cu.id and o.id=#{id}
 </select>
-    <resultMap id="BaseResultMap2" type="com.briup.apps.ej.bean.extend.OrderExtend" >
-        <association property="customer" javaType="com.briup.apps.ej.bean.Customer" >
+    <resultMap id="BaseResultMap2" type="com.briup.apps.ej.bean.extend.OrderExtend">
+        <association property="customer" javaType="com.briup.apps.ej.bean.Customer">
             <id column="cu_id" property="id"/>
             <result column="telephone" property="telephone"/>
             <result column="password" property="password"/>
@@ -59,7 +59,7 @@
             <result column="photo" property="photo"/>
         </association>
     </resultMap>
-    <select  resultMap="BaseResultMap3" id="findAllWaiter" >
+    <select resultMap="BaseResultMap3" id="findAllWaiter">
     select
       w.id as w_id,
       w.telephone,
@@ -71,8 +71,8 @@
       from ej_order o left join  ej_waiter w
       on o.waiter_id=w.id and o.id=#{id}
 </select>
-    <resultMap id="BaseResultMap3" type="com.briup.apps.ej.bean.extend.OrderExtend" >
-        <association property="waiter" javaType="com.briup.apps.ej.bean.Waiter" >
+    <resultMap id="BaseResultMap3" type="com.briup.apps.ej.bean.extend.OrderExtend">
+        <association property="waiter" javaType="com.briup.apps.ej.bean.Waiter">
             <id column="cu_id" property="id"/>
             <result column="telephone" property="telephone"/>
             <result column="password" property="password"/>
@@ -81,5 +81,30 @@
             <result column="status" property="status"/>
             <result column="photo" property="photo"/>
         </association>
+    </resultMap>
+    <select id="query" resultMap="BaseResultMap">
+        select
+
+        from
+            ej_order_line l , ej_order,ej_address,
+        <where>
+            <if test="customerId != null">
+
+            </if>
+            <if test="waiterId != null">
+
+            </if>
+        </where>
+
+    </select>
+    <resultMap id="OrderExtendResultMap" type="com.briup.apps.ej.bean.extend.OrderExtend">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="order_time" jdbcType="BIGINT" property="orderTime"/>
+        <result column="total" jdbcType="DOUBLE" property="total"/>
+        <result column="customer_id" jdbcType="BIGINT" property="customerId"/>
+        <result column="waiter_id" jdbcType="BIGINT" property="waiterId"/>
+        <result column="address_id" jdbcType="BIGINT" property="addressId"/>
+
+
     </resultMap>
 </mapper>
