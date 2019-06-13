@@ -1,6 +1,7 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.OrderLine;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 import com.briup.apps.ej.utils.Message;
@@ -61,12 +62,22 @@ public class OrderController {
 
     @ApiOperation("创建或更新订单")
     @GetMapping("saveOrUpdate")
-    public Message saveOrUpdate(Order order){
-        try {
-            orderService.saveOrUpdate(order);
-            return MessageUtil.message("成功");
-        } catch (Exception e) {
-            return MessageUtil.error("失败");
-        }
+    public Message saveOrUpdate(Order order) throws Exception {
+        orderService.saveOrUpdate(order);
+        return MessageUtil.message("成功");
     }
+
+    @ApiOperation("删除订单")
+    @GetMapping("deleteOrder")
+    public void deleteOrder(Long id) throws Exception {
+        orderService.deleteOrder(id);
+    }
+
+    @ApiOperation("查询订单")
+    @GetMapping("findById")
+    public Message findById(Long id) throws Exception {
+        Order order = orderService.findById(id);
+        return MessageUtil.success("sucess", order);
+    }
+
 }

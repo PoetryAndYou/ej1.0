@@ -39,12 +39,25 @@ public class ProduceController {
     }
 
     @GetMapping("/saveOrUpdate")
-    @ApiOperation("更新删除product")
+    @ApiOperation("更新插入product")
     public Message saveOrUpdate(Product product) throws Exception {
 
         productService.saveOrUpdate(product);
         return MessageUtil.message("成功");
     }
 
+    @GetMapping("/findById")
+    @ApiOperation("查询product")
+    public Message findById(Long id) {
+        Product product = productService.findById(id);
+        return MessageUtil.success("sucess", product);
+    }
+
+    @GetMapping("/deleteById")
+    @ApiOperation("删除product")
+    public Message deleteById(Long id) throws Exception {
+        productService.deleteById(id);
+        return MessageUtil.message("删除成功");
+    }
 
 }
