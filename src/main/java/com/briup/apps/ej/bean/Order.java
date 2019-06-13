@@ -1,5 +1,11 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
+
+import javax.validation.constraints.NotBlank;
+
+@ApiModel("订单模型")
 public class Order {
     /**
      *
@@ -17,6 +23,8 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "订单时间")
+    @NotBlank(message = "订单时间不能为空")
     private Long orderTime;
 
     /**
@@ -26,6 +34,8 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "总价")
+    @NotBlank(message = "总价不能为空")
     private Double total;
 
     /**

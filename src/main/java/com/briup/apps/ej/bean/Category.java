@@ -1,5 +1,11 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
+
+import javax.validation.constraints.NotBlank;
+
+@ApiModel("类别模型")
 public class Category {
     /**
      *
@@ -17,6 +23,8 @@ public class Category {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "姓名")
+    @NotBlank(message = "姓名不能为空")
     private String name;
 
     /**
@@ -26,6 +34,8 @@ public class Category {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+    @ApiParam(value = "数量")
+    @NotBlank(message = "数量不能为空")
     private Integer num;
 
     /**

@@ -1,5 +1,11 @@
 package com.briup.apps.ej.bean;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
+
+import javax.validation.constraints.NotBlank;
+
+@ApiModel("评论模型")
 public class Comment {
     /**
      *
@@ -17,6 +23,7 @@ public class Comment {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+
     private String content;
 
     /**
@@ -26,6 +33,7 @@ public class Comment {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
+
     private Long commentTime;
 
     /**
