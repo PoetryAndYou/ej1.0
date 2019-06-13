@@ -82,65 +82,95 @@
             <result column="photo" property="photo"/>
         </association>
     </resultMap>
-    <select id="query" resultMap="BaseResultMap4">
+    <select id="query" resultMap="BaseResultMap">
         select
         o.id as o_id,
         o.order_time,
-        o.total,
-        o.customer_id,
-        o.waiter_id,
-        o.address_id,
+        o.total ,
+        a.id as a_id,
+        a.city,
+        a.address,
         c.id as c_id,
         c.realname as c_realname,
-        c.telephone as c_telephone,
+        c.telephone,
         w.id as w_id,
-        w.realname as w_realname,
-        w.telephone as w_telephone,
-        a.id as a_id,
-        a.province,
-        a.city,
-        a.area,
-        a.address,
-        a.telephone
-        from ej_order o,ej_customer c,ej_waiter w,ej_address a
+        w.realname as w_realname
+        from
+        ej_address a,ej_order o,ej_customer c,ej_waiter w
         <where>
-            o.customer_id = c.id
-            and o.waiter_id = w.id
-            and o.address_id = a.id
-            <if test="customerId!=null">
-                and c.id = #{customerId}
+            o.customer_id=c.id AND
+            o.waiter_id=w.id AND
+            o.address_id=a.id
+            <if test="customerId != null">
+                c.id=#{customerId}
             </if>
             <if test="waiterId != null">
-                and w.id = #{waiterId}
+                w.id=#{waiterId}
             </if>
         </where>
-
     </select>
-    <resultMap id="BaseResultMap4" type="com.briup.apps.ej.bean.extend.OrderExtend">
-        <id column="id" jdbcType="BIGINT" property="id"/>
+    <resultMap id="OrderExtendResultMap" type="com.briup.apps.ej.bean.extend.OrderExtend">
+        <id column="o_id" jdbcType="BIGINT" property="id"/>
         <result column="order_time" jdbcType="BIGINT" property="orderTime"/>
         <result column="total" jdbcType="DOUBLE" property="total"/>
         <result column="customer_id" jdbcType="BIGINT" property="customerId"/>
         <result column="waiter_id" jdbcType="BIGINT" property="waiterId"/>
         <result column="address_id" jdbcType="BIGINT" property="addressId"/>
-<association property="address" javaType="com.briup.apps.ej.bean.Address">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="province" jdbcType="VARCHAR" property="province" />
-    <result column="city" jdbcType="VARCHAR" property="city" />
-    <result column="area" jdbcType="VARCHAR" property="area" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
-    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
-</association>
-        <association property="waiter" javaType="com.briup.apps.ej.bean.Waiter">
-            <id column="w_id" jdbcType="BIGINT" property="id" />
-            <result column="w_telephone" jdbcType="VARCHAR" property="telephone" />
-            <result column="w_realname" jdbcType="VARCHAR" property="realname" />
+        <association property="address" column="address" javaType="com.briup.apps.ej.bean.Address">
+            <id column="a_id" property="id"></id>
+            <result column="province" jdbcType="VARCHAR" property="province"/>
+            <result column="city" jdbcType="VARCHAR" property="city"/>
+            <result column="area" jdbcType="VARCHAR" property="area"/>
+            <result column="address" jdbcType="VARCHAR" property="address"/>
+            <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+            <result column="customer_id" jdbcType="BIGINT" property="customerId"/>
         </association>
-        <association property="customer" javaType="com.briup.apps.ej.bean.Customer">
-            <id column="c_id" jdbcType="BIGINT" property="id" />
-            <result column="c_telephone" jdbcType="VARCHAR" property="telephone" />
-            <result column="c_realname" jdbcType="VARCHAR" property="realname" />
+        <association property="waiter" column="waiter" javaType="com.briup.apps.ej.bean.Waiter">
+            <id column="w_id" jdbcType="BIGINT" property="id"/>
+            <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+            <result column="password" jdbcType="VARCHAR" property="password"/>
+            <result column="w_realname" jdbcType="VARCHAR" property="realname"/>
+            <result column="idcard" jdbcType="VARCHAR" property="idcard"/>
+            <result column="status" jdbcType="VARCHAR" property="status"/>
+            <result column="photo" jdbcType="VARCHAR" property="photo"/>
         </association>
+        <association property="customer" column="customer" javaType="com.briup.apps.ej.bean.Customer">
+            <id column="c_id" jdbcType="BIGINT" property="id"/>
+            <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+            <result column="password" jdbcType="VARCHAR" property="password"/>
+            <result column="c_realname" jdbcType="VARCHAR" property="realname"/>
+            <result column="status" jdbcType="VARCHAR" property="status"/>
+            <result column="photo" jdbcType="VARCHAR" property="photo"/>
+
+        </association>
+    </resultMap>
+    <select id="queryBasic" resultMap="orderVMResultMap">
+        select
+        o.id as o_id,
+        o.total as total,
+        o.order_time as orderTime,
+        c.realname as customerName,
+        w.realname as waiterName,
+        a.city as address
+        from ej_order o,ej_customer c,ej_waiter w,ej_address a
+        <where>
+            o.customer_id = c.id
+            AND o.waiter_id = w.id
+            AND o.address_id = a.id
+            <if test="customerId!=null">
+                AND c.id = #{customerId}
+            </if>
+            <if test="waiterId != null">
+                AND w.id = #{waiterId}
+            </if>
+        </where>
+    </select>
+    <resultMap id="orderVMResultMap" type="com.briup.apps.ej.bean.VM.OrderVM">
+        <id column="o_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="customerName" property="customerName"/>
+        <result column="waiterName" property="waiterName"/>
+        <result column="address" property="address"/>
+        <result column="total" property="total"/>
+        <result column="orderTime" property="orderTime"/>
     </resultMap>
 </mapper>

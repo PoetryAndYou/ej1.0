@@ -1,6 +1,8 @@
 package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
+import com.briup.apps.ej.bean.VM.OrderVM;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.bean.extend.OrderLineExtend;
 import org.apache.ibatis.annotations.Param;
@@ -35,5 +37,7 @@ public interface IOrderService {
     void batchDelete(Long[] ids) throws Exception;
 
     List<OrderExtend> query(Long customerId, Long waiterId);
+    List<OrderVM> queryBasic(Long customerId, Long waiterId);
+    void save(OrderAndOrderLineVM order) throws Exception;
 
 }
