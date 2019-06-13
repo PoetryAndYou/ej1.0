@@ -77,8 +77,8 @@ public class ICategoryServiceImpl implements ICategoryService {
     public List<CategoryExtend> findAllP(Long id) {
 
         return categoryExtendMapper.findAllP(id);
-    }
 
+    }
     @Override
     public void batchDelete(Long[] ids) throws Exception {
         for(long id :ids){

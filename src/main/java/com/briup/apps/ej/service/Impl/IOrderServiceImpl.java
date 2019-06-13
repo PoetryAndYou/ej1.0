@@ -54,7 +54,30 @@ public class IOrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public int creNewOrd(Order order) {
-        return orderMapper.insert(order);
+    public  void saveOrUpdate(Order order) throws Exception{
+        if(order.getId()==null){
+            orderMapper.insert(order);
+        }else{
+            orderMapper.updateByPrimaryKey(order);
+
+        }
+
+    }
+
+    @Override
+    public void deleteOrder(Long id) throws Exception {
+        Order order=findById(id);
+        if(order==null){
+            throw new Exception("要删除的order不存在");
+        }else{
+            orderMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+    @Override
+    public Order findById(Long id) {
+        OrderExample example=new OrderExample();
+        return orderMapper.selectByPrimaryKey(id);
+
     }
 }

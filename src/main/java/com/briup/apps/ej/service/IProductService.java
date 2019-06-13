@@ -12,4 +12,10 @@ import java.util.List;
 public interface IProductService {
     List<Product> findALLPro();
     public void creOrdLin(Integer num,Long id);
+
+    void saveOrUpdate(Product product)throws Exception;
+
+    Product findById(Long id);
+
+    void deleteById(Long id)throws Exception;
  }

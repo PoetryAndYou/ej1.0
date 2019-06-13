@@ -43,26 +43,17 @@ public class CommerntController {
     }
     @ApiOperation("保存或更新评论信息")
     @PostMapping ("saveOrupdate")
-    public Message saveOrupdate(Comment comment) {
-        try {
+    public Message saveOrupdate(Comment comment) throws Exception {
             commentService.saveOrupdate(comment);
             return MessageUtil.message("更新成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
+
     }
     @ApiOperation("通过id删除评论信息")
     @GetMapping("deleteById")
     public Message deleteById(
-            @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) {
-        try {
+            @NotNull @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) throws  Exception{
             commentService.deleteById(id);
             return MessageUtil.message("删除成功");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MessageUtil.error(e.getMessage());
-        }
     }
     @ApiOperation("批量删除评论信息")
     @PostMapping("batchDelete")
