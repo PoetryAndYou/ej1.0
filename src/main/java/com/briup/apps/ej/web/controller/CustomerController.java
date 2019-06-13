@@ -26,7 +26,7 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
-
+    //模糊查询
     @ApiOperation("模糊查询")
     @GetMapping("query")
     public Message query(Customer customer) {
@@ -40,14 +40,14 @@ public class CustomerController {
         List<Customer> list = customerService.findAll();
         return MessageUtil.success("success", list);
     }
-
+//通过id查询客户
     @ApiOperation("通过id查询客户")
     @GetMapping("findById")
     public Message findById(@ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) {
         Customer customer = customerService.findById(id);
         return MessageUtil.success("success", customer);
     }
-
+//保存货更新客户信息
     @ApiOperation("保存或更新客户信息")
     @PostMapping("saveOrupdate")
     public Message saveOrupdate(@Valid @ModelAttribute Customer customer) throws Exception {
@@ -63,7 +63,7 @@ public class CustomerController {
             return MessageUtil.message("删除成功");
 
     }
-
+//增加了批量删除客户信息
     @ApiOperation("批量删除客户信息")
     @PostMapping("batchDelete")
     public Message batchDelete(@NotNull(message = "id不能为空") Long[] ids) throws Exception {
@@ -71,6 +71,7 @@ public class CustomerController {
             customerService.batchDelete(ids);
         return MessageUtil.message("成功");
     }
+    //查询用户的地址信息
     @ApiOperation("查询用户的地址信息")
     @GetMapping("findMyAddress")
     public Message findMyAddress(Long id) {
