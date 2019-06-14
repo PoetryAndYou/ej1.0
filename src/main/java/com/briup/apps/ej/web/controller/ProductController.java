@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/product")
-public class ProduceController {
+public class ProductController {
     @Autowired
     private IProductService productService;
 

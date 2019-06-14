@@ -105,7 +105,7 @@ public class OrderController {
 
     @PostMapping("save")
     @ApiOperation("保存订单信息")
-    public Message saveOrUpdate(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception {
+    public Message save(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception {
         orderService.save(order);
         return MessageUtil.message("成功");
     }
