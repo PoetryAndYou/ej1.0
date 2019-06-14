@@ -82,6 +82,12 @@ public class ICustomerServiceImpl  implements ICustomerService {
     }
 
     @Override
+    public List<CustomerExtend> findMyMessage(Long id) {
+
+        return customerExtendMapper.findMyMessage(id);
+    }
+
+    @Override
     public List<CustomerExtend> findMyAddress(Long id) {
         return customerExtendMapper.findMyAddress(id);
     }

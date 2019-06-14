@@ -78,4 +78,11 @@ public class CustomerController {
         List<CustomerExtend> list = customerService.findMyAddress(id);
         return MessageUtil.success("success", list);
     }
+    //查询用户的基本信息
+    @ApiOperation("查询用户的基本信息")
+    @GetMapping("findMyMessage")
+    public Message findMyMessage(Long id) {
+        List<CustomerExtend> list = customerService.findMyMessage(id);
+        return MessageUtil.success("success", list);
+    }
 }

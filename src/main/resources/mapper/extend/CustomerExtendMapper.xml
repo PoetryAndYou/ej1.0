@@ -22,4 +22,16 @@
             <result column="telephone" property="telephone"/>
         </association>
     </resultMap>
+    <select  resultMap="BaseResultMap1" id="findMyMessage" >
+    select * from ej_customer cu  where cu.id=#{id}
+</select>
+    <resultMap id="BaseResultMap1" type="com.briup.apps.ej.bean.Customer">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="realname" jdbcType="VARCHAR" property="realname" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="photo" jdbcType="VARCHAR" property="photo" />
+    </resultMap>
+
 </mapper>
