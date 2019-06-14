@@ -39,5 +39,5 @@ public interface IOrderService {
     List<OrderExtend> query(Long customerId, Long waiterId);
     List<OrderVM> queryBasic(Long customerId, Long waiterId);
     void save(OrderAndOrderLineVM order) throws Exception;
-
+    Double Add(int number, Long productId);//查询价值
 }

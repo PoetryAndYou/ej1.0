@@ -109,4 +109,11 @@ public class OrderController {
         orderService.save(order);
         return MessageUtil.message("成功");
     }
+
+    @PostMapping("Add")
+    @ApiOperation("通过传入的数量和产品id计算价值")
+    public Message Add(int number, Long productId) {
+        Double sum = orderService.Add(number, productId);
+        return MessageUtil.success("sucess", sum);
+    }
 }

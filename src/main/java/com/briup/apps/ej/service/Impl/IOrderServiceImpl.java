@@ -125,7 +125,7 @@ public class IOrderServiceImpl implements IOrderService {
         for (OrderLine slist : list
         ) {
 
-            Add(slist.getNumber(),slist.getProductId());
+           sum+= Add(slist.getNumber(), slist.getProductId());
 
 
           /*  int number = slist.getNumber();
@@ -137,9 +137,8 @@ public class IOrderServiceImpl implements IOrderService {
         }
     }
 
-     void Add(int number, Long productId) {
-
-
+    public Double  Add(int number, Long productId) {
+       return orderExtendMapper.Add(number, productId);
     }
 
 

@@ -28,6 +28,6 @@ public interface OrderExtendMapper {
             @Param("customerId") Long customerId,
             @Param("waiterId") Long waiterId
     );
-     void Add(int number, Long productId);//查询价值
+     Double Add(int number, Long productId);//查询价值
 
 }
