@@ -45,7 +45,7 @@ public class AddressController {
     }
     @ApiOperation("保存或更新地址信息")
     @PostMapping ("saveOrupdate")
-    public Message saveOrupdate(@Valid @ModelAttribute Address address) throws Exception {
+    public Message saveOrupdate( Address address) throws Exception {
             addressService.saveOrupdate(address);
             return MessageUtil.message("更新成功");
     }

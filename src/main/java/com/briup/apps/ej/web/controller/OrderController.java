@@ -1,11 +1,13 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Order;
+import com.briup.apps.ej.bean.OrderLine;
+import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
+import com.briup.apps.ej.bean.VM.OrderVM;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import com.briup.apps.ej.service.IOrderService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
-import javax.validation.constraints.NotNull;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -61,14 +63,14 @@ public class OrderController {
 
     @ApiOperation("创建或更新订单")
     @PostMapping("saveOrupdate")
-    public Message saveOrUpdate(@Valid @ModelAttribute Order order) throws Exception {
+    public Message saveOrUpdate(Order order) throws Exception {
         orderService.saveOrupdate(order);
         return MessageUtil.message("成功");
     }
 
     @ApiOperation("删除订单")
     @GetMapping("deleteById")
-    public Message deleteById(@NotNull @RequestParam("id")Long id) throws Exception {
+    public Message deleteById(Long id) throws Exception {
         orderService.deleteById(id);
         return MessageUtil.message("删除成功");
     }
@@ -94,4 +96,17 @@ public class OrderController {
         return MessageUtil.success("sucess", list);
     }
 
+    @ApiOperation("查询订单信息，并且订单级联关联属性")
+    @GetMapping("queryBasic")
+    public Message queryBasic(Long customerId, Long waiterId) {
+        List<OrderVM> list = orderService.queryBasic(customerId, waiterId);
+        return MessageUtil.success("sucess", list);
+    }
+
+    @PostMapping("save")
+    @ApiOperation("保存订单信息")
+    public Message saveOrUpdate(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception {
+        orderService.save(order);
+        return MessageUtil.message("成功");
+    }
 }

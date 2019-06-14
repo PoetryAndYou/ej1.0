@@ -45,13 +45,13 @@ public class                                                                    
     }
     @ApiOperation("保存或更新类别信息")
     @PostMapping("saveOrupdate")
-    public Message saveOrupdate(@Valid @ModelAttribute Category category) throws Exception{
+    public Message saveOrupdate( Category category) throws Exception{
             categoryService.saveOrupdate(category);
             return MessageUtil.message("更新成功");
     }
     @ApiOperation("通过id删除类别信息")
     @GetMapping("deleteById")
-    public Message deleteById(@NotNull @RequestParam("id") long id) throws Exception {
+    public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception {
             categoryService.deleteById(id);
             return MessageUtil.message("删除成功");
     }

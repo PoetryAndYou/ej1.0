@@ -1,5 +1,6 @@
 package com.briup.apps.ej.dao.extend;
 
+import com.briup.apps.ej.bean.VM.OrderVM;
 import com.briup.apps.ej.bean.extend.OrderExtend;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +23,9 @@ public interface OrderExtendMapper {
             @Param("customerId") Long customerId,
             @Param("waiterId") Long waiterId
     );
+    List<OrderVM> queryBasic(
+            @Param("customerId") Long customerId,
+            @Param("waiterId") Long waiterId
+    );
+
 }

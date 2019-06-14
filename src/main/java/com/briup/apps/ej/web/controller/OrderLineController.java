@@ -34,7 +34,7 @@ public class OrderLineController {
 
     @PostMapping("/saveOrupdate")
     @ApiOperation("更新或插入")
-    public Message saveOrUpdate(@Valid @ModelAttribute OrderLine orderLine) throws Exception {
+    public Message saveOrUpdate( OrderLine orderLine) throws Exception {
         orderLineService.saveOrupdate(orderLine);
         return MessageUtil.message("更新或插入成功");
     }

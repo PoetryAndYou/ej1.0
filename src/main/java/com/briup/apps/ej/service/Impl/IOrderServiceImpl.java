@@ -2,13 +2,19 @@ package com.briup.apps.ej.service.Impl;
 
 import com.briup.apps.ej.bean.Order;
 import com.briup.apps.ej.bean.OrderExample;
+import com.briup.apps.ej.bean.OrderLine;
+import com.briup.apps.ej.bean.VM.OrderAndOrderLineVM;
+import com.briup.apps.ej.bean.VM.OrderVM;
 import com.briup.apps.ej.bean.extend.OrderExtend;
+import com.briup.apps.ej.dao.OrderLineMapper;
 import com.briup.apps.ej.dao.OrderMapper;
 import com.briup.apps.ej.dao.extend.OrderExtendMapper;
 import com.briup.apps.ej.service.IOrderService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,6 +27,8 @@ public class IOrderServiceImpl implements IOrderService {
     private OrderMapper orderMapper;
     @Resource
     private OrderExtendMapper orderExtendMapper;
+    @Resource
+    private OrderLineMapper orderLineMapper;
 
     /**
      * 查询所有订单
@@ -86,13 +94,34 @@ public class IOrderServiceImpl implements IOrderService {
     public void batchDelete(Long[] ids) throws Exception {
         for (Long id : ids
         ) {
-            deleteById(id);
+           orderMapper.deleteByPrimaryKey(id);
         }
     }
 
     @Override
     public List<OrderExtend> query(Long customerId, Long waiterId) {
         return orderExtendMapper.query(customerId, waiterId);
+    }
+
+    @Override
+    public List<OrderVM> queryBasic(Long customerId, Long waiterId) {
+        return orderExtendMapper.queryBasic(customerId, waiterId);
+    }
+
+    @Override
+    public void save(OrderAndOrderLineVM order) throws Exception {
+        Order o = new Order();
+        o.setOrderTime(new Date().getTime());
+        //o.setTotal();//钱
+        o.setCustomerId(o.getCustomerId());
+        o.setAddressId(order.getAddressId());
+        orderMapper.insert(o);
+        List<OrderLine> list = order.getOrderLines();
+        for (OrderLine slist : list
+        ) {
+            slist.setOrderId(o.getId());
+            orderLineMapper.insert(slist);
+        }
     }
 
 

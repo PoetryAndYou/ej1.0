@@ -44,15 +44,14 @@ public class CommerntController {
     }
     @ApiOperation("保存或更新评论信息")
     @PostMapping ("saveOrupdate")
-    public Message saveOrupdate(@Valid @ModelAttribute Comment comment) throws Exception {
+    public Message saveOrupdate( Comment comment) throws Exception {
             commentService.saveOrupdate(comment);
             return MessageUtil.message("更新成功");
 
     }
     @ApiOperation("通过id删除评论信息")
     @GetMapping("deleteById")
-    public Message deleteById(
-            @NotNull @ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) throws  Exception{
+    public Message deleteById(@NotNull @RequestParam("id")  Long id) throws  Exception{
             commentService.deleteById(id);
             return MessageUtil.message("删除成功");
     }

@@ -23,7 +23,7 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
-    @ApiParam(value = "订单时间")
+    @ApiParam(value = "订单时间",required = true)
     @NotBlank(message = "订单时间不能为空")
     private Long orderTime;
 
@@ -34,7 +34,7 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
-    @ApiParam(value = "总价")
+    @ApiParam(value = "总价",required = true)
     @NotBlank(message = "总价不能为空")
     private Double total;
 

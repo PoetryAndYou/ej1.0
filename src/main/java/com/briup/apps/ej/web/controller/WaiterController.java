@@ -51,7 +51,7 @@ public class WaiterController {
 
     @ApiOperation("保存或更新员工信息")
     @PostMapping ("saveOrupdate")
-    public Message savaOrupdate(@Valid @ModelAttribute Waiter waiter) throws Exception {
+    public Message savaOrupdate(Waiter waiter) throws Exception {
             waiterService.saveOrupdate(waiter);
             return MessageUtil.message("更新成功");
     }
