@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -84,7 +85,7 @@ public class OrderController {
 
     @ApiOperation("批量删除")
     @PostMapping("batchDelete")
-    public Message batchDelete(Long[] ids) throws Exception {
+    public Message batchDelete(long[] ids) throws Exception {
         orderService.batchDelete(ids);
         return MessageUtil.message("删除成功");
     }

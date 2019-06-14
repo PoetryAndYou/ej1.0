@@ -91,7 +91,7 @@ public class IOrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void batchDelete(Long[] ids) throws Exception {
+    public void batchDelete(long[] ids) throws Exception {
         for (Long id : ids
         ) {
             deleteById(id);
