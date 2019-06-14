@@ -35,12 +35,11 @@ public class IProductServiceImpl implements IProductService {
 
     @Override
     public void saveOrupdate(Product product) throws Exception {
-        ProductExtend extend = new ProductExtend();
         if (product.getId() == null) {
 
             productMapper.insert(product);
         } else {
-            productMapper.updateByPrimaryKey(extend);
+            productMapper.updateByPrimaryKey(product);
         }
 
 

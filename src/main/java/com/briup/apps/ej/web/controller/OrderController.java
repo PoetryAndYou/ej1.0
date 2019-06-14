@@ -106,8 +106,15 @@ public class OrderController {
 
     @PostMapping("save")
     @ApiOperation("保存订单信息")
-    public Message saveOrUpdate(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception {
+    public Message save(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception {
         orderService.save(order);
         return MessageUtil.message("成功");
+    }
+
+    @PostMapping("Add")
+    @ApiOperation("通过传入的数量和产品id计算价值")
+    public Message Add(int number, Long productId) {
+        Double sum = orderService.Add(number, productId);
+        return MessageUtil.success("sucess", sum);
     }
 }
