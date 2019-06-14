@@ -93,8 +93,7 @@ public class IOrderServiceImpl implements IOrderService {
 
     @Override
     public void batchDelete(long[] ids) throws Exception {
-        for (Long id : ids
-        ) {
+        for (Long id : ids) {
             orderMapper.deleteByPrimaryKey(id);
         }
     }
