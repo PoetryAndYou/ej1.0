@@ -85,4 +85,11 @@ public class CustomerController {
         List<CustomerExtend> list = customerService.findMyMessage(id);
         return MessageUtil.success("success", list);
     }
+    //查询用户的订单信息
+    @ApiOperation("查询用户的订单信息")
+    @GetMapping("findMyOrder")
+    public Message findMyOrder(Long id) {
+        List<CustomerExtend> list = customerService.findMyOrder(id);
+        return MessageUtil.success("success", list);
+    }
 }

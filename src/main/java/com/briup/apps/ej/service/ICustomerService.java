@@ -17,6 +17,7 @@ public interface ICustomerService {
     void saveOrupdate (Customer customer) throws Exception;
     void deleteById(long id) throws Exception;
     void batchDelete(Long ids[])throws  Exception;
-     List<CustomerExtend> findMyMessage(Long id);      //查找用户自己的基本信息
+    List<CustomerExtend> findMyMessage(Long id);      //查找用户自己的基本信息
     List<CustomerExtend> findMyAddress(Long id);    //查找用户自己的地址
+    List<CustomerExtend> findMyOrder(Long id);       //查找用户个人订单
 }
