@@ -22,4 +22,33 @@
             <result column="telephone" property="telephone"/>
         </association>
     </resultMap>
+    <select  resultMap="BaseResultMap1" id="findMyMessage" >
+    select * from ej_customer cu  where cu.id=#{id}
+</select>
+    <resultMap id="BaseResultMap1" type="com.briup.apps.ej.bean.Customer">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="realname" jdbcType="VARCHAR" property="realname" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="photo" jdbcType="VARCHAR" property="photo" />
+    </resultMap>
+    <select  resultMap="BaseResultMap2" id="findMyOrder" >
+    select
+      o.id as o_id,
+      o.order_time,
+      o.total,
+      o.waiter_id,
+      o.address_id
+      from ej_order o right join  ej_customer cu
+      on o.customer_id=cu.id and cu.id=#{id}
+</select>
+    <resultMap id="BaseResultMap2" type="com.briup.apps.ej.bean.Order">
+        <id column="o_id" jdbcType="BIGINT" property="id"/>
+        <result column="order_time" jdbcType="BIGINT" property="orderTime"/>
+        <result column="total" jdbcType="DOUBLE" property="total"/>
+        <result column="customer_id" jdbcType="BIGINT" property="customerId"/>
+        <result column="waiter_id" jdbcType="BIGINT" property="waiterId"/>
+        <result column="address_id" jdbcType="BIGINT" property="addressId"/>
+    </resultMap>
 </mapper>

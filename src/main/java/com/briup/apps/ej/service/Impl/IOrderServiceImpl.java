@@ -23,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class IOrderServiceImpl implements IOrderService {
+
     @Resource
     private OrderMapper orderMapper;
     @Resource
@@ -91,10 +92,9 @@ public class IOrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public void batchDelete(Long[] ids) throws Exception {
-        for (Long id : ids
-        ) {
-           orderMapper.deleteByPrimaryKey(id);
+    public void batchDelete(long[] ids) throws Exception {
+        for (Long id : ids) {
+            orderMapper.deleteByPrimaryKey(id);
         }
     }
 
@@ -110,18 +110,34 @@ public class IOrderServiceImpl implements IOrderService {
 
     @Override
     public void save(OrderAndOrderLineVM order) throws Exception {
+        Double sum = 0.0;
         Order o = new Order();
         o.setOrderTime(new Date().getTime());
         //o.setTotal();//钱
-        o.setCustomerId(o.getCustomerId());
+        o.setCustomerId(order.getCustomerId());
         o.setAddressId(order.getAddressId());
         orderMapper.insert(o);
+
+
         List<OrderLine> list = order.getOrderLines();
+
         for (OrderLine slist : list
         ) {
+
+           sum+= Add(slist.getNumber(), slist.getProductId());
+
+
+          /*  int number = slist.getNumber();
+            Long productId = slist.getProductId();*/
+
+
             slist.setOrderId(o.getId());
             orderLineMapper.insert(slist);
         }
+    }
+
+    public Double  Add(int number, Long productId) {
+       return orderExtendMapper.Add(number, productId);
     }
 
 

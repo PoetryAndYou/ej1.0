@@ -173,4 +173,11 @@
         <result column="total" property="total"/>
         <result column="orderTime" property="orderTime"/>
     </resultMap>
+    <select id="Add" resultMap="com.briup.apps.ej.dao.AddressMapper.BaseResultMap">
+    select  price*#{number}
+    from,ej_product
+    where ej_product_id=#{productId};
+    </select>
+
+
 </mapper>

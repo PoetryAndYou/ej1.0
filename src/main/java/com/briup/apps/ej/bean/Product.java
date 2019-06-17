@@ -67,8 +67,7 @@ public class Product {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
-    @ApiParam(value = "图片")
-    @NotBlank(message = "图片不能为空")
+
     private String photo;
 
     /**

@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/product")
-public class ProduceController {
+public class ProductController {
     @Autowired
     private IProductService productService;
 
@@ -41,7 +41,6 @@ public class ProduceController {
     @PostMapping("/saveOrupdate")
     @ApiOperation("更新插入product")
     public Message saveOrupdate( Product product) throws Exception {
-
         productService.saveOrupdate(product);
         return MessageUtil.message("成功");
     }
@@ -55,7 +54,7 @@ public class ProduceController {
 
     @GetMapping("/deleteById")
     @ApiOperation("删除product")
-    public Message deleteById(@NotNull @RequestParam("id") Long id) throws Exception {
+    public Message deleteById( Long id) throws Exception {
         productService.deleteById(id);
         return MessageUtil.message("删除成功");
     }

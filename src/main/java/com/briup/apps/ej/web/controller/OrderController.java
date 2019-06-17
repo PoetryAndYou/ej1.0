@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -84,7 +85,7 @@ public class OrderController {
 
     @ApiOperation("批量删除")
     @PostMapping("batchDelete")
-    public Message batchDelete(Long[] ids) throws Exception {
+    public Message batchDelete(long[] ids) throws Exception {
         orderService.batchDelete(ids);
         return MessageUtil.message("删除成功");
     }
@@ -105,8 +106,15 @@ public class OrderController {
 
     @PostMapping("save")
     @ApiOperation("保存订单信息")
-    public Message saveOrUpdate(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception {
+    public Message save(@Valid @ModelAttribute OrderAndOrderLineVM order) throws Exception {
         orderService.save(order);
         return MessageUtil.message("成功");
+    }
+
+    @PostMapping("Add")
+    @ApiOperation("通过传入的数量和产品id计算价值")
+    public Message Add(int number, Long productId) {
+        Double sum = orderService.Add(number, productId);
+        return MessageUtil.success("sucess", sum);
     }
 }
