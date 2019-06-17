@@ -82,14 +82,14 @@ public class OrderController {
         Order order = orderService.findById(id);
         return MessageUtil.success("sucess", order);
     }
-
+    //增加批量删除
     @ApiOperation("批量删除")
     @PostMapping("batchDelete")
     public Message batchDelete(long[] ids) throws Exception {
         orderService.batchDelete(ids);
         return MessageUtil.message("删除成功");
     }
-
+    //添加关联属性
     @ApiOperation("查询订单信息，并且订单级联关联属性")
     @GetMapping("query")
     public Message query(Long customerId, Long waiterId) {

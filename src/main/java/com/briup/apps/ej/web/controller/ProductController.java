@@ -58,6 +58,7 @@ public class ProductController {
         productService.deleteById(id);
         return MessageUtil.message("删除成功");
     }
+    //增加批量删除
     @ApiOperation("批量删除")
     @PostMapping("batchDeletion")
     public Message batchDeletion(Long[] ids) throws Exception {

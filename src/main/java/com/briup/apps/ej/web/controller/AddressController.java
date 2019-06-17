@@ -22,6 +22,7 @@ import java.util.List;
 @RequestMapping("/address")
 @Validated
 public class AddressController {
+    //模糊查询
     @Autowired
     private IAddressService addressService;
 
@@ -31,12 +32,14 @@ public class AddressController {
         List<Address> list=addressService.query(address);
         return MessageUtil.success("success",list);
     }
+    //查询所有地址
     @ApiOperation("查询所有地址")
     @GetMapping("findAll")
     public Message findAll(){
         List<Address> list=addressService.findAll();
         return MessageUtil.success("success",list);
     }
+    //通过id查询地址
     @ApiOperation("通过id查询地址")
     @GetMapping("findById")
     public Message findById(@ApiParam(value = "主键", required = true) @RequestParam(value = "id") long id) {
