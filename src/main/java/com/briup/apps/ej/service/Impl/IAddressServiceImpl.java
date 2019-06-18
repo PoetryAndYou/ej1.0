@@ -35,6 +35,9 @@ public class IAddressServiceImpl implements IAddressService {
         if(address.getAddress()!=null){
             example.createCriteria().andAddressLike(address.getAddress());
         }
+        if(address.getCustomerId()!=null){
+            example.createCriteria().andCustomerIdEqualTo(address.getCustomerId());
+        }
 
         return addressMapper.selectByExample(example);
     }
