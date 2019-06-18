@@ -37,7 +37,7 @@ public class ICustomerServiceImpl  implements ICustomerService {
                     .andPasswordLike("%"+customer.getPassword()+"%");
         }
         if(customer.getRealname()!=null){
-            example.createCriteria().andRealnameLike(customer.getRealname());
+            example.createCriteria().andRealnameLike("%"+customer.getRealname()+"%");
         }
 
         return customerMapper.selectByExample(example);
