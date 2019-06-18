@@ -62,9 +62,8 @@ public class IProductServiceImpl implements IProductService {
 
     @Override
     public void batchDeletion(Long[] ids) throws Exception {
-        for (Long id : ids
-        ) {
-            deleteById(id);
+        for (Long id : ids) {
+            productMapper.deleteByPrimaryKey(id);
         }
     }
 

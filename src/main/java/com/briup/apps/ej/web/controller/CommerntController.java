@@ -55,6 +55,7 @@ public class CommerntController {
             commentService.deleteById(id);
             return MessageUtil.message("删除成功");
     }
+    //新增批量删除评论信息
     @ApiOperation("批量删除评论信息")
     @PostMapping("batchDelete")
     public Message batchDelete(@NotNull(message = "ids不能为空") Long[] ids) throws Exception{

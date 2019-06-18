@@ -57,9 +57,8 @@ public class IOrderLineServiceImpl implements IOrderLineService {
 
     @Override
     public void batchDelete(Long[] ids) throws Exception {
-        for (Long id : ids
-        ) {
-            deleteById(id);
+        for (Long id : ids) {
+            orderLineMapper.deleteByPrimaryKey(id);
         }
     }
 

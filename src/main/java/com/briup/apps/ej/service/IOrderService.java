@@ -34,7 +34,7 @@ public interface IOrderService {
     Order findById(Long id);
 
     //批量删除
-    void batchDelete(Long[] ids) throws Exception;
+    void batchDelete(long[] ids) throws Exception;
 
     List<OrderExtend> query(Long customerId, Long waiterId);
     List<OrderVM> queryBasic(Long customerId, Long waiterId);

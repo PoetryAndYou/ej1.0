@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * @author rui
+ * @author HuZanyang
  * @create 2019-06-10 11:51
  */
 @RestController
@@ -76,6 +76,20 @@ public class CustomerController {
     @GetMapping("findMyAddress")
     public Message findMyAddress(Long id) {
         List<CustomerExtend> list = customerService.findMyAddress(id);
+        return MessageUtil.success("success", list);
+    }
+    //查询用户的基本信息
+    @ApiOperation("查询用户的基本信息")
+    @GetMapping("findMyMessage")
+    public Message findMyMessage(Long id) {
+        List<CustomerExtend> list = customerService.findMyMessage(id);
+        return MessageUtil.success("success", list);
+    }
+    //查询用户的订单信息
+    @ApiOperation("查询用户的订单信息")
+    @GetMapping("findMyOrder")
+    public Message findMyOrder(Long id) {
+        List<CustomerExtend> list = customerService.findMyOrder(id);
         return MessageUtil.success("success", list);
     }
 }
