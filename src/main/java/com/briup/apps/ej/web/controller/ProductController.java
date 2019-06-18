@@ -67,7 +67,7 @@ public class ProductController {
         return MessageUtil.message("删除成功");
     }
     @ApiOperation("模糊查询")
-    @PostMapping("query")
+    @GetMapping("query")
     public Message query(Product product){
         List<Product> list=productService.query(product);
         return MessageUtil.success("查询成功",list);
