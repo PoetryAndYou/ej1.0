@@ -61,7 +61,7 @@ public class ProductController {
     //增加批量删除
     @ApiOperation("批量删除")
     @PostMapping("batchDeletion")
-    public Message batchDeletion(Long[] ids) throws Exception {
+    public Message batchDeletion(@NotNull(message = "id不能为空")Long[] ids) throws Exception {
 
         productService.batchDeletion(ids);
         return MessageUtil.message("删除成功");
