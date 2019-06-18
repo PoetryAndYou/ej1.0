@@ -151,28 +151,30 @@
         o.order_time as orderTime,
         c.realname as customerName,
         w.realname as waiterName,
-        a.city as address
+        a.address as address
         from ej_order o,ej_customer c,ej_waiter w,ej_address a
         <where>
             o.customer_id = c.id
             AND o.waiter_id = w.id
             AND o.address_id = a.id
             <if test="customerId!=null">
-                c.id = #{customerId}
+              AND  c.id = #{customerId}
             </if>
             <if test="waiterId != null">
-                w.id = #{waiterId}
+             AND   w.id = #{waiterId}
             </if>
         </where>
     </select>
     <resultMap id="orderVMResultMap" type="com.briup.apps.ej.bean.VM.OrderVM">
-        <id column="o_id" jdbcType="BIGINT" property="orderId"/>
+        <id column="o_id"  property="orderId"/>
         <result column="customerName" property="customerName"/>
         <result column="waiterName" property="waiterName"/>
         <result column="address" property="address"/>
         <result column="total" property="total"/>
         <result column="orderTime" property="orderTime"/>
     </resultMap>
+
+
     <select id="Add" resultMap="com.briup.apps.ej.dao.AddressMapper.BaseResultMap">
     select  p.price * #{number}
     from ej_product p
