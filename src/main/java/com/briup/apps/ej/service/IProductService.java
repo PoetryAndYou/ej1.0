@@ -1,6 +1,7 @@
 package com.briup.apps.ej.service;
 
 import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.bean.Waiter;
 import com.briup.apps.ej.bean.extend.CategoryExtend;
 
 import java.util.List;
@@ -21,4 +22,7 @@ public interface IProductService {
 
     //批量删除
     void batchDeletion(Long[] ids)throws Exception;
+
+    List<Product> query(Product  product);
+
  }

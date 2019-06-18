@@ -67,5 +67,15 @@ public class IProductServiceImpl implements IProductService {
         }
     }
 
+    @Override
+    public List<Product> query(Product product) {
+        ProductExample example = new ProductExample();
+        if (product.getName() != null) {
+            example.createCriteria().andNameLike("%" + product.getName() + "%");
+        }
+        return productMapper.selectByExample(example);
+
+    }
+
 
 }
