@@ -158,10 +158,10 @@
             AND o.waiter_id = w.id
             AND o.address_id = a.id
             <if test="customerId!=null">
-                AND c.id = #{customerId}
+                c.id = #{customerId}
             </if>
             <if test="waiterId != null">
-                AND w.id = #{waiterId}
+                w.id = #{waiterId}
             </if>
         </where>
     </select>
@@ -174,9 +174,9 @@
         <result column="orderTime" property="orderTime"/>
     </resultMap>
     <select id="Add" resultMap="com.briup.apps.ej.dao.AddressMapper.BaseResultMap">
-    select  price*#{number}
-    from,ej_product
-    where ej_product_id=#{productId};
+    select  p.price * #{number}
+    from ej_product p
+    where p.id=#{productId};
     </select>
 
 

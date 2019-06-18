@@ -5,7 +5,9 @@ import com.briup.apps.ej.bean.CommentExample;
 import com.briup.apps.ej.dao.CommentMapper;
 import com.briup.apps.ej.service.ICommentService;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,17 +23,17 @@ public class ICommentServiceImpl implements ICommentService {
     public List<Comment> query(Comment comment) {
         CommentExample example = new CommentExample();
 
-        if(comment.getContent()!=null){
+        if (comment.getContent() != null) {
             example
                     .createCriteria()
-                    .andContentLike("%"+comment.getContent()+"%");
+                    .andContentLike("%" + comment.getContent() + "%");
         }
-        if(comment.getCommentTime()!=null){
+        if (comment.getCommentTime() != null) {
             example
                     .createCriteria()
                     .andCommentTimeEqualTo(comment.getCommentTime());
         }
-        if(comment.getOrderId()!=null){
+        if (comment.getOrderId() != null) {
             example.createCriteria().andOrderIdEqualTo(comment.getOrderId());
         }
 
@@ -40,7 +42,7 @@ public class ICommentServiceImpl implements ICommentService {
 
     @Override
     public List<Comment> findAll() {
-        CommentExample example=new CommentExample();
+        CommentExample example = new CommentExample();
         return commentMapper.selectByExample(example);
     }
 
@@ -54,6 +56,7 @@ public class ICommentServiceImpl implements ICommentService {
         if (comment.getId() == null) {
             commentMapper.insert(comment);
         } else {
+            comment.setCommentTime(new Date().getTime());
             commentMapper.updateByPrimaryKey(comment);
         }
     }
@@ -70,7 +73,7 @@ public class ICommentServiceImpl implements ICommentService {
 
     @Override
     public void batchDelete(Long[] ids) throws Exception {
-        for(long id :ids){
+        for (long id : ids) {
             commentMapper.deleteByPrimaryKey(id);
         }
     }

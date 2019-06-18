@@ -68,6 +68,7 @@ public class IOrderServiceImpl implements IOrderService {
         if (order.getId() == null) {
             orderMapper.insert(order);
         } else {
+            order.setOrderTime(new Date().getTime());
             orderMapper.updateByPrimaryKey(order);
 
         }
@@ -125,20 +126,17 @@ public class IOrderServiceImpl implements IOrderService {
         for (OrderLine slist : list
         ) {
 
-           sum+= Add(slist.getNumber(), slist.getProductId());
-
-
-          /*  int number = slist.getNumber();
-            Long productId = slist.getProductId();*/
-
-
+            sum += Add(slist.getNumber(), slist.getProductId());
             slist.setOrderId(o.getId());
             orderLineMapper.insert(slist);
+            System.out.println(sum);
         }
+
+
     }
 
-    public Double  Add(int number, Long productId) {
-       return orderExtendMapper.Add(number, productId);
+    public Double Add(int number, Long productId) {
+        return orderExtendMapper.Add(number, productId);
     }
 
 

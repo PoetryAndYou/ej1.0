@@ -23,7 +23,7 @@ public class Order {
      *
      * @mbg.generated Mon Jun 10 16:05:14 CST 2019
      */
-    @ApiParam(value = "订单时间",required = true)
+//    @ApiParam(value = "订单时间",required = true)
     @NotBlank(message = "订单时间不能为空")
     private Long orderTime;
 
