@@ -40,8 +40,8 @@
       o.total,
       o.waiter_id,
       o.address_id
-      from ej_order o right join  ej_customer cu
-      on o.customer_id=cu.id and cu.id=#{id}
+      from ej_order o ,  ej_customer cu
+      where o.customer_id=cu.id and cu.id=#{id}
 </select>
     <resultMap id="BaseResultMap2" type="com.briup.apps.ej.bean.Order">
         <id column="o_id" jdbcType="BIGINT" property="id"/>
