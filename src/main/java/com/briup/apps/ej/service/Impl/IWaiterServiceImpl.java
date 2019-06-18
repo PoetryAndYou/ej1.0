@@ -21,12 +21,20 @@ public class IWaiterServiceImpl implements IWaiterService {
 //模糊查询
     @Override
     public List<Waiter> query(Waiter waiter) {
-        WaiterExample waiterexample = new WaiterExample();
+        WaiterExample example = new WaiterExample();
         if (waiter.getRealname() != null) {
-            waiterexample.createCriteria()
+           example.createCriteria()
+                    .andRealnameLike("%" + waiter.getRealname() + "%");
+        }
+        if (waiter.getTelephone() != null) {
+            example.createCriteria()
                     .andTelephoneLike("%" + waiter.getTelephone() + "%");
         }
-        return waiterMapper.selectByExample(waiterexample);
+        if (waiter.getIdcard() != null) {
+            example.createCriteria()
+                    .andIdcardLike("%" + waiter.getIdcard() + "%");
+        }
+        return waiterMapper.selectByExample(example);
     }
 
 //查询所有的员工

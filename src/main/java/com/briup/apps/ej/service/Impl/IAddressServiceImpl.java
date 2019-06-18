@@ -33,7 +33,7 @@ public class IAddressServiceImpl implements IAddressService {
                     .andTelephoneLike("%"+address.getTelephone()+"%");
         }
         if(address.getAddress()!=null){
-            example.createCriteria().andAddressLike(address.getAddress());
+            example.createCriteria().andAddressLike("%"+address.getAddress()+"%");
         }
         if(address.getCustomerId()!=null){
             example.createCriteria().andCustomerIdEqualTo(address.getCustomerId());
