@@ -1,11 +1,13 @@
 package com.briup.apps.ej.web.controller;
 
 import com.briup.apps.ej.bean.Product;
+import com.briup.apps.ej.bean.VM.ProductVM;
 import com.briup.apps.ej.bean.extend.CategoryExtend;
 import com.briup.apps.ej.service.IProductService;
 import com.briup.apps.ej.utils.Message;
 import com.briup.apps.ej.utils.MessageUtil;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -72,5 +74,10 @@ public class ProductController {
         List<Product> list=productService.query(product);
         return MessageUtil.success("查询成功",list);
     }
-
+    @ApiOperation("通过productId查询该产品的所有评论")
+    @GetMapping("queryBasic")
+  public Message  queryBasic( Long productId){
+      List<ProductVM> list=productService.queryBasic(productId);
+      return MessageUtil.success("sucess",list);
+    }
 }

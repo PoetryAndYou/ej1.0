@@ -2,6 +2,7 @@ package com.briup.apps.ej.service.Impl;
 
 import com.briup.apps.ej.bean.Product;
 import com.briup.apps.ej.bean.ProductExample;
+import com.briup.apps.ej.bean.VM.ProductVM;
 import com.briup.apps.ej.bean.extend.ProductExtend;
 import com.briup.apps.ej.dao.ProductMapper;
 import com.briup.apps.ej.dao.extend.ProductExtendMapper;
@@ -75,6 +76,11 @@ public class IProductServiceImpl implements IProductService {
         }
         return productMapper.selectByExample(example);
 
+    }
+
+    @Override
+    public List<ProductVM> queryBasic(Long productId) {
+        return productExtendMapper.queryBasic(productId);
     }
 
 

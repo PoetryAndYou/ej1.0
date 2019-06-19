@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.briup.apps.ej.dao.extend.ProductExtendMapper">
+    <select id="queryBasic" resultMap="ProductVMResultMap" >
+        select
+        c.id as c_id,
+        c.content,
+        c.comment_time
+        from
+        ej_comment c,ej_order,ej_order_line,ej_product
+        <where>
+            ej_product.id =ej_order_line.product_id
+            AND ej_order_line.order_id=ej_order.id
+            AND ej_order.id=c.order_id
+            <if test="productId != null">
+                AND  ej_product.id=#{productId}
+            </if>
+        </where>
+    </select>
+    <resultMap id="ProductVMResultMap" type="com.briup.apps.ej.bean.VM.ProductVM">
+        <id property="id" column="c_id"></id>
+        <result column="content" property="content"></result>
+        <result column="comment_time" property="commentTime"></result>
+    </resultMap>
     <insert id="creOrdLin">
         insert into ej_order_line(number,product_id)
         values (#{num},#{id})
     </insert>
+
+
 </mapper>
